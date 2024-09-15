@@ -13,5 +13,8 @@ export async function generateAnalysis(req, res) {
 		const transcript = t.map((t) => t.text).join(" ");
 
 		return res.status(200).json(transcript);
-	} catch (err) {}
+	} catch (err) {
+		console.error(err);
+		return res.status(500).json({ msg: "Unexpected error occured." });
+	}
 }
