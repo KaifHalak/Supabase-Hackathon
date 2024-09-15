@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Productivity Tracker</title>
+    <link rel="stylesheet" href="input.css" />
+    <link href="output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="bg-lightblackStats text-white p-6 rounded-lg shadow-lg max-w-sm mx-auto mt-20">
+      <div class="relative">
+        <div class="flex justify-center items-center bg-lightgreyStats text-black w-32 h-32 rounded-full mx-auto mb-4">
+          <div class="text-center">
+            <p class="text-2xl font-bold">1 mill</p>
+            <p class="text-sm">Total Points</p>
+          </div>
+        </div>
+
+        <div class="absolute bg-gray-100 text-black rounded-full flex items-center justify-center w-12 h-12 top-4 right-4 z-10">
+          <p class="text-xs font-bold text-center">+80k</p>
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center text-yellow-500 mb-4">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M21 5h-2V3a1 1 0 00-1-1h-3a1 1 0 00-1 1v2h-4V3a1 1 0 00-1-1H6a1 1 0 00-1 1v2H3a1 1 0 00-1 1v2a7 7 0 005 6.7V18H5a1 1 0 00-1 1v2a1 1 0 001 1h14a1 1 0 001-1v-2a1 1 0 00-1-1h-2v-3.3A7 7 0 0022 8V6a1 1 0 00-1-1zM5 8V6h1v5.72A5.002 5.002 0 015 8zm14 0a5.002 5.002 0 01-1 3.72V6h1v2z"
+          ></path>
+        </svg>
+        <p class="text-xl font-bold ml-2 mr-2">7th</p>
+      </div>
+
+      <div class="mb-4">
+        <p>Daily Goal: 500 Points</p>
+        <div class="bg-gray-400 rounded-full h-4 w-full">
+          <div class="bg-tealishStats h-4 rounded-full" style="width: 45%"></div>
+        </div>
+        <p class="text-right text-xs">45%</p>
+      </div>
+
+      <div class="mb-4">
+        <p>Level 7</p>
+        <div class="bg-gray-400 rounded-full h-4 w-full">
+          <div class="bg-tealishStats h-4 rounded-full" style="width: 75%"></div>
+        </div>
+        <p class="text-right text-xs">75%</p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-between mt-4">
+        <button id = "leaderBoardButton" class="bg-tealishStats hover:bg-tealishStats text-white py-2 px-4 rounded-lg">
+          Leaderboard
+        </button>
+        <button id = "signOutButton" class="bg-redStats hover:bg-red-600 text-white py-2 px-4 rounded-lg">
+          Sign Out
+        </button>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+    <script src="UserStats.js"></script>
+
+  </body>
+</html>
