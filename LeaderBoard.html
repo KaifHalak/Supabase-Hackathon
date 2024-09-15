@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="input.css" />
+    <link href="output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-blueblack flex justify-center items-center min-h-screen p-4 ">
+    <div
+      class="bg-white rounded-3xl w-full max-w-4xl shadow-lg overflow-hidden mt-12 mb-20"
+    >
+      <div class="md:flex">
+       
+        <div class="md:w-1/3 bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br">
+          
+          <div class="p-6 flex items-center">
+            <button class="text-2xl font-bold md:hidden">&lt;</button>
+            <h1 class="text-2xl font-bold ml-4">Leaderboard</h1>
+          </div>
+
+          
+          <div class="flex md:flex-col justify-around items-center px-4 py-8">
+           
+            <div class="flex flex-col items-center mb-8">
+              <img
+                src="https://via.placeholder.com/80"
+                alt="Albert Flores"
+                class="w-20 h-20 rounded-full mb-2"
+              />
+              <div class="text-center">
+                <p class="font-semibold">Albert Flores</p>
+                <p class="text-sm text-gray-600">2000 points</p>
+              </div>
+              <div
+                class="w-24 h-12 bg-green-300 rounded-t-lg mt-2 flex items-end justify-center"
+              >
+                <span class="text-2xl font-bold pb-2">1</span>
+              </div>
+            </div>
+
+            
+            <div class="flex flex-col items-center mb-8">
+              <img
+                src="https://via.placeholder.com/70"
+                alt="Bessie Cooper"
+                class="w-16 h-16 rounded-full mb-2"
+              />
+              <div class="text-center">
+                <p class="font-semibold">Bessie Cooper</p>
+                <p class="text-sm text-gray-600">1887 points</p>
+              </div>
+              <div
+                class="w-20 h-10 bg-green-300 rounded-t-lg mt-2 flex items-end justify-center"
+              >
+                <span class="text-xl font-bold pb-2 ">2</span>
+              </div>
+            </div>
+
+            
+            <div class="flex flex-col items-center">
+              <img
+                src="https://via.placeholder.com/60"
+                alt="Devon Lane"
+                class="w-14 h-14 rounded-full mb-2"
+              />
+              <div class="text-center">
+                <p class="font-semibold">Devon Lane</p>
+                <p class="text-sm text-gray-600">1882 points</p>
+              </div>
+              <div
+                class="w-16 h-8 bg-green-300 rounded-t-lg mt-2 flex items-end justify-center"
+              >
+                <span class="text-lg font-bold pb-1">3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="md:w-2/3">
+          
+          <div class="bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br p-4 flex items-center justify-between">
+            <div class="flex items-center">
+              <img
+                src="https://via.placeholder.com/50"
+                alt="Warren"
+                class="w-12 h-12 rounded-full mr-4"
+              />
+              <div>
+                <p class="font-semibold text-white">Warren</p>
+                <p class="text-sm text-white">Points: 238</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-sm text-white mr-6">Level: Silver</p>
+              <p class="text-sm text-white mr-6">Position: 258</p>
+            </div>
+          </div>
+
+          
+          <ul
+            class="divide-y divide-gray-200 overflow-y-auto"
+            style="max-height: calc(100vh - 200px)"
+          >
+            <li class="p-4 flex items-center mr-4">
+              <span class="font-semibold w-8">04</span>
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Esther Howard"
+                class="w-10 h-10 rounded-full mx-4"
+              />
+              <div class="flex-grow">
+                <p class="font-semibold">Esther Howard</p>
+                <p class="text-sm text-gray-600">1087 points</p>
+              </div>
+              <span class="text-pink-500 text-2xl">👑</span>
+            </li>
+            <li class="p-4 flex items-center mr-4">
+              <span class="font-semibold w-8">05</span>
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Leslie Alexander"
+                class="w-10 h-10 rounded-full mx-4"
+              />
+              <div class="flex-grow">
+                <p class="font-semibold">Leslie Alexander</p>
+                <p class="text-sm text-gray-600">1056 points</p>
+              </div>
+              <span class="text-pink-500 text-2xl">👑</span>
+            </li>
+            <li class="p-4 flex items-center mr-4">
+              <span class="font-semibold w-8">06</span>
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Kristin Watson"
+                class="w-10 h-10 rounded-full mx-4"
+              />
+              <div class="flex-grow">
+                <p class="font-semibold">Kristin Watson</p>
+                <p class="text-sm text-gray-600">1002 points</p>
+              </div>
+              <span class="text-pink-500 text-2xl">👑</span>
+            </li>
+            <li class="p-4 flex items-center mr-4">
+              <span class="font-semibold w-8">07</span>
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Albert Flores"
+                class="w-10 h-10 rounded-full mx-4"
+              />
+              <div class="flex-grow">
+                <p class="font-semibold">Albert Flores</p>
+                <p class="text-sm text-gray-600">917 points</p>
+              </div>
+              <span class="text-yellow-500 text-2xl">👑</span>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -12,6 +12,10 @@ module.exports = {
         lightblackStats: '#333333',
         redStats: '#C53B3B',
         lightgreyStats: '#D3D3D3',
+        blueblack: '#000016',
+        greenLdrBrd: '#4ade80',
+        purpleLdrBrd: '#6366f1',
+        blueLdrBrd:  '#0ea5e9'
       },
       spacing: {
         '668px': '668px',
