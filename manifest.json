@@ -6,7 +6,8 @@
     "activeTab",
     "storage",
     "identity", 
-    "scripting"
+    "scripting",
+    "tabs"  
   ],
   "action": {
     "default_popup": "popup.html",
@@ -30,6 +31,12 @@
   },
   "host_permissions": [
     "*://*.googleapis.com/*",  
-    "*://our-backend-server.com/*" 
+    "*://our-backend-server.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["After-Log-Out.html"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
