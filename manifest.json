@@ -7,7 +7,7 @@
     "storage",
     "identity",
     "scripting",
-    "tabs"  
+    "tabs"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -23,19 +23,22 @@
     }
   ],
   "oauth2": {
-    "client_id": "OUR_GOOGLE_OAUTH_CLIENT_ID", 
+    "client_id": "OUR_GOOGLE_OAUTH_CLIENT_ID",
     "scopes": [
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile"
     ]
   },
   "host_permissions": [
-    "*://*.googleapis.com/*",  
+    "*://*.googleapis.com/*",
     "*://our-backend-server.com/*"
   ],
   "web_accessible_resources": [
     {
-      "resources": ["After-Log-Out.html"],
+      "resources": [
+        "After-Log-Out.html",
+        "LeaderBoard.html"
+      ],
       "matches": ["<all_urls>"]
     }
   ]
