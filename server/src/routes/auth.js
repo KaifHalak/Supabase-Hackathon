@@ -1,10 +1,10 @@
+import express from "express";
 import passport from "passport";
 import { Router } from "express";
 import { googleStrategy } from "../utils/authStrategies.js";
-
 passport.use(googleStrategy);
 
-const authRouter = Router();
+const authRouter = express.Router();
 
 // UI endpoint to intiate google oAuth
 authRouter.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));

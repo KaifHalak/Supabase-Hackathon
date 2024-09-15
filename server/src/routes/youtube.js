@@ -4,6 +4,6 @@ import { generateAnalysis } from "../controllers/youtube.js";
 
 const router = express.Router();
 
-router.get("/:videoId", generateAnalysis);
+router.get("/video/analysis/:videoId", generateAnalysis);
 
 export default router;
