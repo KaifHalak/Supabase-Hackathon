@@ -1,5 +1,6 @@
 import express from "express";
 import passport from "passport";
+import { Router } from "express";
 import { googleStrategy } from "../utils/authStrategies.js";
 passport.use(googleStrategy);
 
