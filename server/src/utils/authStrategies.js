@@ -14,11 +14,9 @@ export const googleStrategy = new GoogleStrategy(
 		callbackURL: GOOGLE_CALLBACK_URL,
 	},
 	async (accessToken, refreshToken, profile, done) => {
-		console.log(profile);
+		let { sub, name, picture, email } = profile._json;
 
-		let { userId, email, email_verified: emailVerified, name: username, picture: pictureURL } = profile._json;
-
-		let userData = { userId, username, pictureURL };
+		let userData =  { sub, name, picture, email }
 
 		done(null, userData);
 	}
