@@ -4,7 +4,6 @@
      "version": "1.0",
      "permissions": ["activeTab", "storage", "identity", "scripting", "tabs"],
      "action": {
-          "default_popup": "popup.html",
           "default_title": "YouTube Productivity Tracker"
      },
      "background": {
