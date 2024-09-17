@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const statsScreen = document.getElementById('statsScreen');
     const loginButton = document.getElementById('loginButton');
     const logoutButton = document.getElementById('logoutButton');
-    const leaderboardButton = document.getElementById('leaderboardButton');
     const viewStatsButton = document.getElementById('ViewStatsBtn');
   
 
@@ -29,12 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
   
-
-    if (leaderboardButton) {
-        leaderboardButton.addEventListener('click', () => {
-            window.location.href = 'https://your-leaderboard-site.com';
-        });
-    }
 
 
     if (viewStatsButton) {
