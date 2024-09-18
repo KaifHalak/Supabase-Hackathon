@@ -30,7 +30,7 @@ export async function generateAnalysis(req, res) {
 		
 		console.log(AIverdict.choices[0]?.message?.content || "");
 
-		const verdict = AIverdict.choices[0]?.message?.content || "Could not analyze the video.";
+		const verdict = AIverdict.choices[0]?.message?.content || "Could not analyze the video.";  //'verdict' contains either 1 for productive or 0 for un-productive when analysis is successful
 
 		return res.status(200).json({
 			// transcript: transcript,
