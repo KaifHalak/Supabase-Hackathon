@@ -18,7 +18,7 @@ app.get("/statsTest", (req, res) => {
           points: 80,
           leaderboardPosition: 2,
           currentLevel: 7,
-          pointsToAdvance: 50
+          pointsToAdvance: 200
      })
      //  console.log(req.user)
      //  if (req.user) {
