@@ -8,7 +8,7 @@
     "default_title": "YouTube Productivity Tracker"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background.js"
   },
   "oauth2": {
     "client_id": "OUR_GOOGLE_OAUTH_CLIENT_ID",

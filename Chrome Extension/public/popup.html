@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube Productivity Tracker</title>
-    <link href="input.css" rel="stylesheet">
     <link href="output.css" rel="stylesheet">
     <style>
         body, html {
@@ -21,8 +20,8 @@
 
         <div id="loginScreen" class="w-full h-full flex items-center justify-center bg-[#2F343A]">
             <div class="w-[280px] bg-[#1C1F25] rounded-xl p-8 shadow-lg flex flex-col items-center justify-center">
-                <h1 class="text-2xl font-bold text-white mb-4">App Name</h1>
-                <p class="text-sm text-gray-400 mb-8">to get started</p>
+                <h1 class="mb-4 text-2xl font-bold text-white">App Name</h1>
+                <p class="mb-8 text-sm text-gray-400">to get started</p>
                 <button
                 id="loginButton"
                 class="flex items-center justify-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
@@ -55,17 +54,17 @@
         </div>
 
     <!-- Main Stats Screen (UI 2) -->
-    <div id="statsScreen" class="bg-gray-800 text-white h-full w-full p-6" style="display: none;">
+    <div id="statsScreen" class="w-full h-full p-6 text-white bg-gray-800" style="display: none;">
         <div class="flex flex-col h-full">
             <div class="flex-grow space-y-6">
                 <div class="relative">
-                    <div class="bg-gray-700 rounded-full w-32 h-32 mx-auto flex items-center justify-center">
+                    <div class="flex items-center justify-center w-32 h-32 mx-auto bg-gray-700 rounded-full">
                         <div class="text-center">
                             <p class="text-4xl font-bold">1250</p>
                             <p class="text-sm">Total Points</p>
                         </div>
                     </div>
-                    <div class="absolute top-0 right-0 bg-gray-600 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                    <div class="absolute top-0 right-0 flex items-center justify-center w-10 h-10 text-white bg-gray-600 rounded-full">
                         <p class="text-xs font-bold">+75</p>
                     </div>
                 </div>
@@ -82,8 +81,8 @@
                         <p class="text-sm">Daily Goal: 500 Points</p>
                         <p class="text-sm">45%</p>
                     </div>
-                    <div class="bg-gray-600 rounded-full h-2">
-                        <div class="bg-green-500 h-2 rounded-full" style="width: 45%"></div>
+                    <div class="h-2 bg-gray-600 rounded-full">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 45%"></div>
                     </div>
                 </div>
 
@@ -92,24 +91,24 @@
                         <p class="text-sm">Level 7</p>
                         <p class="text-sm">75%</p>
                     </div>
-                    <div class="bg-gray-600 rounded-full h-2">
-                        <div class="bg-green-500 h-2 rounded-full" style="width: 75%"></div>
+                    <div class="h-2 bg-gray-600 rounded-full">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 75%"></div>
                     </div>
                 </div>
             </div>
 
             <div class="flex justify-between mt-6">
-                <button id="leaderBoardButton" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">
+                <button id="leaderBoardButton" class="px-4 py-2 text-white transition duration-300 bg-green-500 rounded-md hover:bg-green-600">
                     Leaderboard
                 </button>
-                <button id="signOutButton" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">
+                <button id="signOutButton" class="px-4 py-2 text-white transition duration-300 bg-red-500 rounded-md hover:bg-red-600">
                     Sign Out
                 </button>
             </div>
         </div>
     </div>
 
-    <script src="popup.js"></script>
-    <script src="UserStats.js"></script>
+    <script src="src/popup.js"></script>
+    <script src="src/UserStats.js"></script>
 </body>
 </html>
