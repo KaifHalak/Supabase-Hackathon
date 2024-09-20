@@ -8,6 +8,12 @@ import expressSession from "express-session";
 
 import env from "../src/utils/env.js";
 
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const PAGES_PATH = path.join(__dirname, "../../", "public")
+
 const app = express();
 const server = http.createServer(app);
 
@@ -55,6 +61,7 @@ passport.deserializeUser((user, done) => {
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+app.use(express.static(PAGES_PATH))
 // app.use(helmet())
 
 let PORT = env("SERVER_PORT") || 3000;
