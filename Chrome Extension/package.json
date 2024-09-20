@@ -1,0 +1,20 @@
+{
+     "name": "supabase-hackathon",
+     "version": "1.0.0",
+     "description": "",
+     "main": "popup.js",
+     "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "watch": "tailwindcss -i ./input.css -o ./output.css --watch",
+          "build": "tailwindcss -i ./input.css -o ./output.css",
+          "minify": "npx tailwindcss -o output.css --minify"
+     },
+     "keywords": [],
+     "author": "",
+     "license": "ISC",
+     "devDependencies": {
+          "autoprefixer": "^10.4.20",
+          "postcss": "^8.4.47",
+          "tailwindcss": "^3.4.12"
+     }
+}
