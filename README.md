@@ -21,7 +21,8 @@ Additionally, it features a leaderboard that ranks users based on their producti
 ## Installation Guide
 
 1. **Clone the repository**:
-   git clone https://github.com/yourusername/productivity-tracker-extension.git
+   ```
+      git clone https://github.com/KaifHalak/Supabase-Hackathon
    ```
 2. #Navigate to the project directory:
    ```bash
