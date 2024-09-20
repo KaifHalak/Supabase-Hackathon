@@ -17,7 +17,13 @@ authRouter.get("/sign-out", (req, res, next) => {
 		if (err) {
 			return next();
 		}
-		res.redirect("/");
+          req.session.destroy(function (err) {
+               if (err) {
+                    console.log("error: ", err)
+               }
+
+               return res.clearCookie("productivityAppSession123").redirect("/")
+          })
 	});
 });
 

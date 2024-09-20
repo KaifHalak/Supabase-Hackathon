@@ -1,6 +1,11 @@
+const serverUrl = "http://localhost:3000/api"
+// remove the return statement from SendInfoToServer()
+
 let currentVideoId = null
 
 const youtubeRegex = /^https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([^&]+)/
+
+chrome.runtime.onInstalled.addListener(OnInstalled)
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
      if (tab.url && changeInfo.status === "complete") {
@@ -14,9 +19,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     console.log("New YouTube video detected:", videoId)
 
                     // Comment this out for now for development purposes
-                    // SendInfoToServer(videoId);
+                    SendInfoToServer(videoId);
 
-                    // chrome.scripting.executeScript does not have a callback function. You need to use .then()
                     chrome.scripting
                          .executeScript({
                               target: { tabId: tabId },
@@ -34,7 +38,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 })
 
 function SendInfoToServer(videoId, watchedPercentage = null) {
-     const serverUrl = "https://your-server-url.com/api/video-info"
+     return
 
      const TrySendingRequest = (attemptsLeft = 3) => {
           fetch(serverUrl, {
@@ -82,3 +86,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           console.log("Threshold Reached: ", request.percentage)
      }
 })
+
+
+
+async function OnInstalled({ reason }) {
+     switch (reason) {
+          case "install":
+               chrome.storage.sync.set({ prevTotalPoints: 0 })
+               break
+          case "update":
+               break
+          default:
+               break
+     }
+}
