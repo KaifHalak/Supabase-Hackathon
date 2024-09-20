@@ -12,7 +12,7 @@ import { leaderboardPage, mainPage } from "./controllers/pages.js"
 app.get("/", mainPage)
 app.get("/leaderboard", leaderboardPage)
 
-app.use("/api/auth", authRouter)
+app.use("/auth", authRouter)
 // app.use("/api", /* authUser,*/ youtubeRouter);
 // app.use("/api", /* authUser,*/ statsRouter);
 app.get("/api/leaderboard", leaderboardPage)
