@@ -15,8 +15,7 @@ app.get("/leaderboard", leaderboardPage)
 app.get("/statsTest", (req, res) => {
      res.json({
           dailyGoal: 100,
-          points: 50,
-          newPointsEarned: 10,
+          points: 80,
           leaderboardPosition: 2,
           currentLevel: 7,
           pointsToAdvance: 50

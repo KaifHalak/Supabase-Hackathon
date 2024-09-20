@@ -36,19 +36,24 @@ async function PopulateUserValues() {
      const {
           dailyGoal,
           points,
-          newPointsEarned,
           leaderboardPosition,
           currentLevel,
           pointsToAdvance
      } = userStats
+
+     let { prevTotalPoints } = await chrome.storage.sync.get("prevTotalPoints")
+     let newPointsEarned = points - prevTotalPoints
+     chrome.storage.sync.set({ prevTotalPoints: points })
 
      document.querySelector(
           "#dailyGoalValue"
      ).textContent = `Daily Goal: ${dailyGoal} Points`
 
      document.querySelector("#totalPointsValue").textContent = points
+
      document.querySelector("#newPointsEarnedValue").textContent =
           "+" + newPointsEarned
+
      document.querySelector("#leaderboardPosition").textContent =
           leaderboardPosition
 
