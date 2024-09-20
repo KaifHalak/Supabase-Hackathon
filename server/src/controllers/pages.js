@@ -9,5 +9,6 @@ export function leaderboardPage(req, res, next) {
 }
 
 export function mainPage(req, res, next) {
+     console.log(req.user)
      res.sendFile(path.join(PAGES_PATH, "main.html"))
 }

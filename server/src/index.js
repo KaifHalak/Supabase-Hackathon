@@ -12,6 +12,19 @@ import { leaderboardPage, mainPage } from "./controllers/pages.js"
 app.get("/", mainPage)
 app.get("/leaderboard", leaderboardPage)
 
+app.get("/statsTest", (req, res) => {
+     res.json({
+          points: 100,
+          leaderboardPosition: 2
+     })
+     //  console.log(req.user)
+     //  if (req.user) {
+     //       return res.json({ status: "success" })
+     //  } else {
+     //       return res.json({})
+     //  }
+})
+
 app.use("/auth", authRouter)
 // app.use("/api", /* authUser,*/ youtubeRouter);
 // app.use("/api", /* authUser,*/ statsRouter);
