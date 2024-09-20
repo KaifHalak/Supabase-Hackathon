@@ -1,9 +1,10 @@
+const colors = require('tailwindcss/colors')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./*.{html,js}",
-    "./popup.js",
-    "./manifest.json"
+    "./popup.js"
   ],
   theme: {
     extend: {
@@ -15,7 +16,11 @@ module.exports = {
         blueblack: '#000016',
         greenLdrBrd: '#4ade80',
         purpleLdrBrd: '#6366f1',
-        blueLdrBrd:  '#0ea5e9'
+        blueLdrBrd:  '#0ea5e9',
+        green: colors.emerald,
+        yellow: colors.amber,
+        purple: colors.violet,
+        tealStats: '#14b8a6',
       },
       spacing: {
         '668px': '668px',
