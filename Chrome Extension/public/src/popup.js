@@ -33,11 +33,42 @@ async function PopulateUserValues() {
      }
 
      // Populate the values
-     const { points, leaderboardPosition } = userStats
+     const {
+          dailyGoal,
+          points,
+          newPointsEarned,
+          leaderboardPosition,
+          currentLevel,
+          pointsToAdvance
+     } = userStats
+
+     document.querySelector(
+          "#dailyGoalValue"
+     ).textContent = `Daily Goal: ${dailyGoal} Points`
 
      document.querySelector("#totalPointsValue").textContent = points
+     document.querySelector("#newPointsEarnedValue").textContent =
+          "+" + newPointsEarned
      document.querySelector("#leaderboardPosition").textContent =
           leaderboardPosition
+
+     // Daily Goal progress
+
+     let dailyProgress = Math.round((points / dailyGoal) * 100)
+     document.querySelector("#dailyGoalProgressBar").style.width =
+          dailyProgress + "%"
+     document.querySelector("#dailyGoalProgressValue").textContent =
+          dailyProgress + "%"
+
+     // Level progress
+
+     let levelProgress = Math.round((points / pointsToAdvance) * 100)
+     document.querySelector("#currentLevelValue").textContent =
+          "Level " + currentLevel
+     document.querySelector("#currentLevelProgressBar").style.width =
+          levelProgress + "%"
+     document.querySelector("#currentLevelProgressValue").textContent =
+          levelProgress + "%"
 
      return true
 }

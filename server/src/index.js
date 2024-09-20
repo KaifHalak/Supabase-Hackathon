@@ -14,8 +14,12 @@ app.get("/leaderboard", leaderboardPage)
 
 app.get("/statsTest", (req, res) => {
      res.json({
-          points: 100,
-          leaderboardPosition: 2
+          dailyGoal: 100,
+          points: 50,
+          newPointsEarned: 10,
+          leaderboardPosition: 2,
+          currentLevel: 7,
+          pointsToAdvance: 50
      })
      //  console.log(req.user)
      //  if (req.user) {

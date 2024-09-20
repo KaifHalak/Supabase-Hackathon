@@ -22,7 +22,7 @@
 
           <div
                id="loginScreen"
-               class="w-full flex items-center justify-center bg-[#1C1F25] h-[200px]">
+               class="hidden w-full items-center justify-center bg-[#1C1F25] h-[200px]">
                <div
                     class="w-[280px] flex flex-col items-center justify-center space-y-3">
                     <h1 class="text-2xl font-bold text-white">App Name</h1>
@@ -70,20 +70,24 @@
           <!-- Main Stats Screen (UI 2) -->
           <div
                id="statsScreen"
-               class="w-full h-full p-6 text-white bg-gray-800">
+               class="hidden w-full h-full p-6 text-white bg-gray-800">
                <div class="flex flex-col h-full w-[280px]">
                     <div class="flex-grow space-y-6">
                          <div class="relative">
                               <div
                                    class="flex items-center justify-center w-32 h-32 mx-auto bg-gray-700 rounded-full">
                                    <div class="text-center">
-                                        <p id="totalPointsValue" class="text-4xl font-bold">null</p>
+                                        <p
+                                             id="totalPointsValue"
+                                             class="text-4xl font-bold">
+                                             null
+                                        </p>
                                         <p class="text-sm">Total Points</p>
                                    </div>
                               </div>
                               <div
                                    class="absolute top-0 right-0 flex items-center justify-center w-10 h-10 text-white bg-gray-600 rounded-full">
-                                   <p class="text-xs font-bold">+0</p>
+                                   <p id="newPointsEarnedValue" class="text-xs font-bold">+0</p>
                               </div>
                          </div>
 
@@ -96,16 +100,25 @@
                                    <path
                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                               </svg>
-                              <p id="leaderboardPosition" class="text-xl font-bold">null</p>
+                              <p
+                                   id="leaderboardPosition"
+                                   class="text-xl font-bold">
+                                   null
+                              </p>
                          </div>
 
                          <div>
                               <div class="flex justify-between mb-1">
-                                   <p class="text-sm">Daily Goal: 500 Points</p>
-                                   <p class="text-sm">null</p>
+                                   <p id="dailyGoalValue" class="text-sm">Daily Goal: 200 Points</p>
+                                   <p
+                                        id="dailyGoalProgressValue"
+                                        class="text-sm">
+                                        null
+                                   </p>
                               </div>
                               <div class="h-2 bg-gray-600 rounded-full">
                                    <div
+                                        id="dailyGoalProgressBar"
                                         class="h-2 bg-green-500 rounded-full"
                                         style="width: 45%"></div>
                               </div>
@@ -113,11 +126,12 @@
 
                          <div>
                               <div class="flex justify-between mb-1">
-                                   <p class="text-sm">Level null</p>
-                                   <p class="text-sm">null</p>
+                                   <p id="currentLevelValue" class="text-sm">Level null</p>
+                                   <p id="currentLevelProgressValue" class="text-sm">null</p>
                               </div>
                               <div class="h-2 bg-gray-600 rounded-full">
                                    <div
+                                   id="currentLevelProgressBar"
                                         class="h-2 bg-green-500 rounded-full"
                                         style="width: 75%"></div>
                               </div>
