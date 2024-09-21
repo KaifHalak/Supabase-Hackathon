@@ -14,7 +14,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           if (match) {
                const videoId = match[1]
 
-               if (videoId /*  && videoId !== currentVideoId*/ ) {
+               if (videoId /*  && videoId !== currentVideoId*/) {
                     currentVideoId = videoId
                     console.log("New YouTube video detected:", videoId)
 
@@ -87,7 +87,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 async function OnInstalled({ reason }) {
      switch (reason) {
           case "install":
-               chrome.storage.sync.set({ prevTotalPoints: 0 })
+               chrome.storage.sync.set({
+                    prevTotalPoints: 0,
+                    todayDailyGoalPoints: 0,
+                    dailyGoalCurrentDate: new Date().toDateString()
+               })
                break
           case "update":
                break
