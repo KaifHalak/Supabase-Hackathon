@@ -16,7 +16,7 @@ export const googleStrategy = new GoogleStrategy(
 	async (accessToken, refreshToken, profile, done) => {
 		let { sub, name, picture, email } = profile._json;
 
-		let userData =  { sub, name, picture, email }
+		let userData = { sub, name, picture, email };
 
 		done(null, userData);
 	}

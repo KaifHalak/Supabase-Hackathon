@@ -1,7 +1,8 @@
 import { YoutubeTranscript } from "youtube-transcript";
-import Groq from "groq-sdk";
+// import Groq from "groq-sdk";
+import { supabase } from "../services/supabase.js";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+// const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function generateAnalysis(req, res) {
 	try {
@@ -13,9 +14,28 @@ export async function generateAnalysis(req, res) {
 			return res.status(404).json({ msg: "Captions not found." });
 		}
 
-		const transcript = t.map((t) => t.text).join(" ");
+		let transcript;
 
-		return res.status(200).json(transcript);
+		if (t[t.length - 1].offset > 600) {
+			let time = 0;
+			let index;
+
+			for (let i = 0; i < t.length; i++) {
+				if (time >= 600) break;
+				index = i;
+				if (t[i].offset > time) {
+					time = t[i].offset;
+				}
+			}
+			transcript = t
+				.slice(0, index)
+				.map((t) => t.text)
+				.join(" ");
+		} else {
+			transcript = t.map((t) => t.text).join(" ");
+		}
+
+		// return res.status(200).json({ t: t.slice(0, 270).slice(-1), transcript });
 
 		const AIverdict = await groq.chat.completions.create({
 			messages: [
@@ -30,6 +50,8 @@ export async function generateAnalysis(req, res) {
 		console.log(AIverdict.choices[0]?.message?.content || "");
 
 		const verdict = AIverdict.choices[0]?.message?.content || "Could not analyze the video."; //'verdict' contains either 1 for productive or 0 for un-productive when analysis is successful
+
+		const insertIntoVideos = await supabase.from("Videos").insert([{ uri: id, ai_productivity_analysis: verdict, user }]);
 
 		return res.status(200).json({
 			// transcript: transcript,
