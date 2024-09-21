@@ -2,8 +2,8 @@ const SERVER_PATH = "http://localhost:3000"
 const LEADERBOARD_PAGE = SERVER_PATH + "/leaderboard"
 const GOOGLE_AUTH = SERVER_PATH + "/auth/google"
 const SIGN_OUT = SERVER_PATH + "/auth/sign-out"
-// const USER_STATS = SERVER_PATH + "/api/user/stats"
-const USER_STATS = SERVER_PATH + "/statsTest"
+const USER_STATS = SERVER_PATH + "/user/stats"
+// const USER_STATS = SERVER_PATH + "/statsTest"
 
 const COOKIE_NAME = "productivityAppSession123"
 
@@ -41,9 +41,36 @@ async function PopulateUserValues() {
           pointsToAdvance
      } = userStats
 
-     let { prevTotalPoints } = await chrome.storage.sync.get("prevTotalPoints")
-     let newPointsEarned = points - prevTotalPoints
-     chrome.storage.sync.set({ prevTotalPoints: points })
+     let { prevTotalPoints, todayDailyGoalPoints, dailyGoalCurrentDate } =
+          await chrome.storage.sync.get(null)
+
+     // Reset Daily goal everyday
+
+     const storedDate = new Date(dailyGoalCurrentDate)
+     const today = new Date()
+
+     storedDate.setHours(0, 0, 0, 0)
+     today.setHours(0, 0, 0, 0)
+
+     if (today > storedDate) {
+          todayDailyGoalPoints = 0
+          dailyGoalCurrentDate = today
+          console.log("reset daily points")
+     }
+
+     let newPointsEarned = 0
+
+     if (prevTotalPoints !== 0) {
+          newPointsEarned = points - prevTotalPoints
+     }
+
+     todayDailyGoalPoints += newPointsEarned
+
+     chrome.storage.sync.set({
+          prevTotalPoints: points,
+          todayDailyGoalPoints,
+          dailyGoalCurrentDate
+     })
 
      document.querySelector(
           "#dailyGoalValue"
@@ -59,7 +86,11 @@ async function PopulateUserValues() {
 
      // Daily Goal progress
 
-     let dailyProgress = Math.round((points / dailyGoal) * 100)
+     let dailyProgress = Math.round((todayDailyGoalPoints / dailyGoal) * 100)
+     if (dailyProgress > 100) {
+          dailyProgress = 100
+     }
+
      document.querySelector("#dailyGoalProgressBar").style.width =
           dailyProgress + "%"
      document.querySelector("#dailyGoalProgressValue").textContent =
@@ -67,7 +98,7 @@ async function PopulateUserValues() {
 
      // Level progress
 
-     let levelProgress = Math.round((points / pointsToAdvance) * 100)
+     let levelProgress = Math.round((points / (pointsToAdvance + points)) * 100)
      document.querySelector("#currentLevelValue").textContent =
           "Level " + currentLevel
      document.querySelector("#currentLevelProgressBar").style.width =

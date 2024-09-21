@@ -1,9 +1,9 @@
 // routes/youtubeRoutes.js
-import express from "express";
-import { generateAnalysis } from "../controllers/youtube.js";
+import express from "express"
+import { generateAnalysis } from "../controllers/youtube.js"
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/analysis/:videoId", generateAnalysis);
+router.post("/analysis/:videoId", generateAnalysis)
 
-export default router;
+export default router
