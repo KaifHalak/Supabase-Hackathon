@@ -2,8 +2,8 @@ const SERVER_PATH = "http://localhost:3000"
 const LEADERBOARD_PAGE = SERVER_PATH + "/leaderboard"
 const GOOGLE_AUTH = SERVER_PATH + "/auth/google"
 const SIGN_OUT = SERVER_PATH + "/auth/sign-out"
-// const USER_STATS = SERVER_PATH + "/api/user/stats"
-const USER_STATS = SERVER_PATH + "/statsTest"
+const USER_STATS = SERVER_PATH + "/user/stats"
+// const USER_STATS = SERVER_PATH + "/statsTest"
 
 const COOKIE_NAME = "productivityAppSession123"
 

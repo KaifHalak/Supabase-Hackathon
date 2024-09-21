@@ -1,4 +1,4 @@
-const serverUrl = "http://localhost:3000/api"
+const serverUrl = "http://localhost:3000/youtube/analysis/"
 // remove the return statement from SendInfoToServer()
 
 let currentVideoId = null
@@ -14,17 +14,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           if (match) {
                const videoId = match[1]
 
-               if (videoId && videoId !== currentVideoId) {
+               if (videoId /*  && videoId !== currentVideoId*/ ) {
                     currentVideoId = videoId
                     console.log("New YouTube video detected:", videoId)
 
-                    // Comment this out for now for development purposes
-                    SendInfoToServer(videoId);
+                    SendInfoToServer(videoId)
 
                     chrome.scripting
                          .executeScript({
                               target: { tabId: tabId },
-                              files: ["content.js"]
+                              files: ["src/content.js"]
                          })
                          .then(() => {
                               chrome.tabs.sendMessage(tabId, {
@@ -38,10 +37,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 })
 
 function SendInfoToServer(videoId, watchedPercentage = null) {
-     return
-
+     console.log(serverUrl + videoId)
      const TrySendingRequest = (attemptsLeft = 3) => {
-          fetch(serverUrl, {
+          fetch(serverUrl + videoId, {
                method: "POST",
                headers: {
                     "Content-Type": "application/json"
@@ -80,14 +78,11 @@ function SendInfoToServer(videoId, watchedPercentage = null) {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
      if (request.type === "WATCHED_THRESHOLD") {
-          // Comment this out for now for development purposes
-          // SendInfoToServer(request.videoId, request.percentage)
+          SendInfoToServer(request.videoId, request.percentage)
 
           console.log("Threshold Reached: ", request.percentage)
      }
 })
-
-
 
 async function OnInstalled({ reason }) {
      switch (reason) {
