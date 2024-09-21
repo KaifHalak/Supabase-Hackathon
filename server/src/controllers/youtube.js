@@ -99,22 +99,39 @@ export async function generateAnalysis(req, res) {
 
           // return res.status(200).json({ t: t.slice(0, 270).slice(-1), transcript });
 
-          const AIverdict = await groq.chat.completions.create({
-               messages: [
-                    {
-                         role: "user",
-                         content: `Analyze the YouTube video transcript given and determine whether the content of the video is "Productive" or "Un-productive". Only return "1" for productive or "0" for un-productive as your answer. Transcript: "${transcript}"` //the prompt to the AI
-                    }
-               ],
-               model: "llama3-8b-8192" //model used
-          })
+          let verdict
+          let numOfAttempts = 3
+          let currentAttempt = 0
+          let correctVerdictFlag = false
+          while (!correctVerdictFlag && currentAttempt <= numOfAttempts) {
+               const AIverdict = await groq.chat.completions.create({
+                    messages: [
+                         {
+                              role: "user",
+                              content: `Analyze the YouTube video transcript given and determine whether the content of the video is "Productive" or "Un-productive". Only return "1" for productive or "0" for un-productive as your answer. Do not reply with anything else. Transcript: "${transcript}"` //the prompt to the AI
+                         }
+                    ],
+                    model: "llama3-8b-8192" //model used
+               })
 
-          //   console.log(AIverdict.choices[0]?.message?.content || "")
+               //   console.log(AIverdict.choices[0]?.message?.content || "")
 
-          const verdict = AIverdict.choices[0]?.message?.content || undefined //'verdict' contains either 1 for productive or 0 for un-productive when analysis is successful
+               verdict = AIverdict.choices[0]?.message?.content || undefined //'verdict' contains either 1 for productive or 0 for un-productive when analysis is successful
 
-          console.log("AI verdict: ")
-          console.log(verdict)
+               console.log("AI verdict: ")
+               console.log(verdict)
+               console.log("attempt: ", currentAttempt)
+
+               if (verdict == 1 || verdict == 0) {
+                    correctVerdictFlag = true
+               }
+
+               currentAttempt++
+          }
+
+          if (!correctVerdictFlag) {
+               return res.status(500)
+          }
 
           if (verdict == 1) {
                console.log("verdict == 1")
