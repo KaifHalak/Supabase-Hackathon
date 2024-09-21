@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "YouTube Productivity Tracker",
   "version": "1.0",
-  "permissions": ["activeTab", "storage", "identity", "scripting", "tabs"],
+  "permissions": ["activeTab", "storage", "identity", "scripting", "tabs", "cookies"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "YouTube Productivity Tracker"
@@ -21,7 +21,8 @@
     "*://*.googleapis.com/*",
     "*://our-backend-server.com/*",
     "*://youtube.com/watch*",
-    "*://www.youtube.com/watch*"
+    "*://www.youtube.com/watch*",
+    "http://localhost/*"
   ],
   "web_accessible_resources": [
     {
