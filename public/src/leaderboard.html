@@ -5,20 +5,20 @@
      <meta charset="UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <title>Leaderboard</title>
-     <link href="./output.css" rel="stylesheet" />
+     <link href="src/output.css" rel="stylesheet" />
 </head>
 
-<body class="text-white bg-[radial-gradient(closest-side,_#848484_0%,_#1e1e1e_86%)] min-h-[90vh]">
-     <nav class="flex flex-row justify-between mt-6 mx-6">
-          <h2 class="font-medium text-xl">Productify</h2>
-          <h1 class="font-medium text-4xl">Leaderboard</h1>
-          <h2 class="font-medium text-xl">Productify</h2>
+<body class="text-white bg-[radial-gradient(closest-side,_#5E83DB_0%,_#110F28_86%)] min-h-[90vh]">
+     <nav class="flex flex-row justify-between mx-6 mt-6">
+          <h2 class="text-xl font-medium">Productify</h2>
+          <h1 class="text-4xl font-medium">Leaderboard</h1>
+          <h2 class="text-xl font-medium">Productify</h2>
      </nav>
      <div class="container p-4 mx-auto">
           <!-- Ranks Container -->
-          <div class="relative p-6 mt-24 bg-[#333333] mx-24 rounded-xl outline outline-[6px] outline-[#fff]/30">
+          <div class="relative p-6 mt-24 bg-[#110F28] mx-24 rounded-xl outline outline-[6px] outline-[#979EC3]">
                <div
-                    class="relative w-2/3 p-8 mx-auto mb-4 -mt-16 bg-[#1e1e1e] rounded-3xl outline outline-[5px] outline-[#5b5b5b] outline-offset-[-8px]">
+                    class="relative w-2/3 p-8 mx-auto mb-4 -mt-16 bg-[#110F28] rounded-3xl outline outline-[5px] outline-[#979EC3] outline-offset-[-8px]">
                     <div class="flex items-end justify-center h-40">
                          <!-- Second Place -->
                          <div class="flex flex-col items-center mx-2">
@@ -26,7 +26,7 @@
                                    <img src="../assets/Trophies_icons/2nd.png" alt="Trophy"
                                         class="object-contain w-full h-full" />
                               </div>
-                              <div class="flex flex-col items-center justify-center w-min h-24 p-2 bg-gray-600">
+                              <div class="flex flex-col items-center justify-center h-24 p-2 bg-gray-600 w-min">
                                    <p id="pos-2-name" class="text-sm text-center"></p>
                                    <p id="pos-2-score" class="font-bold text-center"></p>
                               </div>
@@ -38,7 +38,7 @@
                                    <img src="../assets/Trophies_icons/1st.png" alt="Trophy"
                                         class="object-contain w-full h-full" />
                               </div>
-                              <div class="flex flex-col items-center justify-center w-min p-2 bg-yellow-500 h-28">
+                              <div class="flex flex-col items-center justify-center p-2 bg-yellow-500 w-min h-28">
                                    <p id="pos-1-name" class="text-sm text-center"></p>
                                    <p id="pos-1-score" class="font-bold text-center"></p>
                               </div>
@@ -50,7 +50,7 @@
                                    <img src="../assets/Trophies_icons/2nd.png" alt="Trophy"
                                         class="object-contain w-full h-full" />
                               </div>
-                              <div class="flex flex-col items-center justify-center w-min h-20 p-2 bg-orange-500">
+                              <div class="flex flex-col items-center justify-center h-20 p-2 bg-orange-500 w-min">
                                    <p id="pos-3-name" class="text-sm text-center"></p>
                                    <p id="pos-3-score" class="font-bold text-center"></p>
                               </div>
@@ -58,10 +58,10 @@
                     </div>
                </div>
 
-               <div class="overflow-hidden bg-[#1e1e1e]/60 rounded-xl">
+               <div class="overflow-hidden bg-[#110F28]/60 rounded-xl">
                     <table class="w-full">
                          <thead>
-                              <tr class="bg-[#1e1e1e]">
+                              <tr class="bg-[#110F28]">
                                    <th class="px-4 py-2 text-left">
                                         Place
                                    </th>
@@ -80,6 +80,6 @@
           </div>
      </div>
 </body>
-<script src="script/leaderboard.js"></script>
+<script src="src/script/leaderboard.js"></script>
 
 </html>
