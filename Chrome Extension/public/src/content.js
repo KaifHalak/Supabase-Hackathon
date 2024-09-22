@@ -1,7 +1,7 @@
 let watchedTime = 0
 let thresholdReached = false
 let lastUpdateTime = null
-const THRESHOLD_PERCENTAGE = 1
+const THRESHOLD_PERCENTAGE = 30
 
 const youtubeRegex = /^https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([^&]+)/
 
