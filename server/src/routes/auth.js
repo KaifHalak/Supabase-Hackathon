@@ -10,7 +10,7 @@ const authRouter = express.Router();
 authRouter.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 // Google call back
-authRouter.get("/google/callback", passport.authenticate("google", { failureRedirect: "/auth/login", successRedirect: "/", keepSessionInfo: true }));
+authRouter.get("/google/callback", passport.authenticate("google", { failureRedirect: "/", successRedirect: "/", keepSessionInfo: true }));
 
 authRouter.get("/sign-out", (req, res, next) => {
 	req.logout((err) => {

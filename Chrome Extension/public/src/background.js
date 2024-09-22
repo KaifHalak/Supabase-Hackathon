@@ -1,5 +1,6 @@
+const SERVER_PATH = "http://localhost:3000"
 const serverUrl = "http://localhost:3000/youtube/analysis/"
-// remove the return statement from SendInfoToServer()
+const COOKIE_NAME = "productivityAppSession123"
 
 let currentVideoId = null
 
@@ -7,47 +8,62 @@ const youtubeRegex = /^https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([^&]+)/
 
 chrome.runtime.onInstalled.addListener(OnInstalled)
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
      if (tab.url && changeInfo.status === "complete") {
           const match = tab.url.match(youtubeRegex)
 
           if (match) {
                const videoId = match[1]
 
-               if (videoId /*  && videoId !== currentVideoId*/) {
+               if (videoId && videoId !== currentVideoId) {
                     currentVideoId = videoId
-                    console.log("New YouTube video detected:", videoId)
-
-                    SendInfoToServer(videoId)
-
-                    chrome.scripting
-                         .executeScript({
-                              target: { tabId: tabId },
-                              files: ["src/content.js"]
+     
+                    let isContentScriptInjected =
+                         await sendMessageToContentScript(tab.id, {
+                              type: "CONTENT_SCRIPT_STATUS"
                          })
-                         .then(() => {
-                              chrome.tabs.sendMessage(tabId, {
-                                   type: "NEW_VIDEO",
-                                   videoId: videoId
-                              })
-                         })
+
+
+                    if (isContentScriptInjected) {
+                         if (isContentScriptInjected?.status === "active") {
+                              return
+                         }
+                    }
+
+                    chrome.scripting.executeScript({
+                         target: { tabId: tabId },
+                         files: ["src/content.js"]
+                    })
                }
           }
      }
 })
 
-function SendInfoToServer(videoId, watchedPercentage = null) {
-     console.log(serverUrl + videoId)
+function sendMessageToContentScript(tabId, message) {
+     return new Promise((resolve, reject) => {
+          chrome.tabs.sendMessage(tabId, message, (response) => {
+               if (chrome.runtime.lastError) {
+                    resolve(null)
+               } else {
+                    resolve(response)
+               }
+          })
+     })
+}
+
+async function SendInfoToServer(videoId) {
+     userSignedIn = await getCookie()
+     if (!userSignedIn) {
+          return
+     }
+
      const TrySendingRequest = (attemptsLeft = 3) => {
           fetch(serverUrl + videoId, {
                method: "POST",
                headers: {
                     "Content-Type": "application/json"
                },
-               body: JSON.stringify({
-                    videoId: videoId,
-                    watchedPercentage: watchedPercentage
-               })
+               body: JSON.stringify({})
           })
                .then((response) => {
                     if (!response.ok) {
@@ -56,7 +72,8 @@ function SendInfoToServer(videoId, watchedPercentage = null) {
                     return response.json()
                })
                .then((data) => {
-                    console.log("Server response:", data)
+                    const { pointsEarned } = data
+                    CreateNotification(pointsEarned)
                })
                .catch((error) => {
                     console.error("Failed to send video info to server:", error)
@@ -78,9 +95,7 @@ function SendInfoToServer(videoId, watchedPercentage = null) {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
      if (request.type === "WATCHED_THRESHOLD") {
-          SendInfoToServer(request.videoId, request.percentage)
-
-          console.log("Threshold Reached: ", request.percentage)
+          SendInfoToServer(request.videoId)
      }
 })
 
@@ -98,4 +113,32 @@ async function OnInstalled({ reason }) {
           default:
                break
      }
+}
+
+function CreateNotification(pointsEarned) {
+     chrome.notifications.clear("points-earned").then((wasCleared) => {
+          chrome.notifications.create("points-earned", {
+               type: "basic",
+               iconUrl: "../assets/icon.png",
+               title: "Points Earned!",
+               message: `You just scored ${pointsEarned} points! Keep it up!`,
+               silent: true,
+               priority: 2
+          })
+     })
+}
+
+function getCookie() {
+     return new Promise((resolve, reject) => {
+          chrome.cookies.get(
+               { url: SERVER_PATH, name: COOKIE_NAME },
+               function (cookie) {
+                    if (chrome.runtime.lastError) {
+                         resolve(null)
+                    } else {
+                         resolve(cookie ? cookie.value : null)
+                    }
+               }
+          )
+     })
 }

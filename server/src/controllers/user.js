@@ -1,11 +1,13 @@
 import { supabase } from "../services/supabase.js"
+const DAILY_GOAL = 800
+
 export async function getUserStats(req, res) {
      try {
           const { data: userArr, error: uError } = await supabase
                .from("Users")
                .select("*")
                .eq("email", req.user.email)
-               .eq("username", req.user.name)
+               .eq("auth_token", req.user.sub)
 
           if (uError) {
                console.error("Error fetching users:", uError)
@@ -27,9 +29,6 @@ export async function getUserStats(req, res) {
           const userRank =
                leaderboard.findIndex((u) => u.userId === user.userId) + 1
 
-          console.log(
-               `User with ID ${user.userId} is in position ${userRank + 1}`
-          )
 
           const currentPoints = user.total_points
           const nextLevel = user.level + 1
@@ -38,17 +37,9 @@ export async function getUserStats(req, res) {
 
           const pointsToAdvance = Math.floor(pointsToLevelUp - currentPoints)
 
-          console.log("User Stats Sent")
-          console.log({
-               dailyGoal: 100,
-               leaderboardPosition: userRank,
-               points: currentPoints,
-               currentLevel: user.level,
-               pointsToAdvance
-          })
 
           return res.status(200).json({
-               dailyGoal: 100,
+               dailyGoal: DAILY_GOAL,
                leaderboardPosition: userRank,
                points: currentPoints,
                currentLevel: user.level,
@@ -65,12 +56,12 @@ export async function insertUserToDB({ sub, name, picture, email }) {
           .from("Users")
           .select()
           .eq("email", email)
-          .eq("username", name)
+          .eq("auth_token", sub)
 
      if (exists.data.length > 0) {
           const auth = exists.data[0].auth_token === sub
 
-          if (auth) return true
+          if (auth) return exists.data[0].userId
           else return false
      }
 
@@ -78,8 +69,7 @@ export async function insertUserToDB({ sub, name, picture, email }) {
           .from("Users")
           .insert({ username: name, email, picture, auth_token: sub })
           .select()
+     if (insertUser.data[0]?.length <= 0) return false
 
-     if (insertUser.data?.length <= 0) return false
-
-     return true
+     return insertUser.data[0].userId
 }

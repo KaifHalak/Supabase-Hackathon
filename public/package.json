@@ -1,19 +1,9 @@
 {
-     "name": "public",
-     "version": "1.0.0",
-     "description": "",
-     "main": "index.js",
      "scripts": {
-          "watch": "tailwindcss -i ./input.css -o ./output.css --watch",
-          "build": "tailwindcss -i ./input.css -o ./output.css",
-          "minify": "npx tailwindcss -o output.css --minify"
+          "build": "npx tailwindcss -i ./src/input.css -o ./src/output.css",
+          "watch": "tailwindcss -i ./src/input.css -o ./src/output.css --watch"
      },
-     "keywords": [],
      "devDependencies": {
-          "autoprefixer": "^10.4.20",
-          "postcss": "^8.4.47",
           "tailwindcss": "^3.4.12"
-     },
-     "author": "",
-     "license": "ISC"
+     }
 }
