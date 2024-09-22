@@ -1,5 +1,4 @@
 const serverUrl = "http://localhost:3000/youtube/analysis/"
-// remove the return statement from SendInfoToServer()
 
 let currentVideoId = null
 
@@ -18,25 +17,17 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     currentVideoId = videoId
                     console.log("New YouTube video detected:", videoId)
 
-                    SendInfoToServer(videoId)
-
                     chrome.scripting
                          .executeScript({
                               target: { tabId: tabId },
                               files: ["src/content.js"]
-                         })
-                         .then(() => {
-                              chrome.tabs.sendMessage(tabId, {
-                                   type: "NEW_VIDEO",
-                                   videoId: videoId
-                              })
                          })
                }
           }
      }
 })
 
-function SendInfoToServer(videoId, watchedPercentage = null) {
+function SendInfoToServer(videoId) {
      console.log(serverUrl + videoId)
      const TrySendingRequest = (attemptsLeft = 3) => {
           fetch(serverUrl + videoId, {
@@ -44,10 +35,7 @@ function SendInfoToServer(videoId, watchedPercentage = null) {
                headers: {
                     "Content-Type": "application/json"
                },
-               body: JSON.stringify({
-                    videoId: videoId,
-                    watchedPercentage: watchedPercentage
-               })
+               body: JSON.stringify({})
           })
                .then((response) => {
                     if (!response.ok) {
@@ -78,8 +66,7 @@ function SendInfoToServer(videoId, watchedPercentage = null) {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
      if (request.type === "WATCHED_THRESHOLD") {
-          SendInfoToServer(request.videoId, request.percentage)
-
+          SendInfoToServer(request.videoId)
           console.log("Threshold Reached: ", request.percentage)
      }
 })
