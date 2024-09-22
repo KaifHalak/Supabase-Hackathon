@@ -108,10 +108,16 @@ export async function generateAnalysis(req, res) {
                     messages: [
                          {
                               role: "user",
-                              content: `Analyze the YouTube video transcript given and determine whether the content of the video is "Productive" or "Un-productive". Only return "1" for productive or "0" for un-productive as your answer. Do not reply with anything else. Transcript: "${transcript}"` //the prompt to the AI
+                              content: ` "Analyze the YouTube video transcript provided below. Consider the following: 
+								- 'Productive' videos provide educational content, tutorials, learning material, scientific explanations, or general self-improvement.
+								- 'Un-productive' videos are meant solely for entertainment (comedy, music videos, skits) or contain no significant learning material.
+								Only return '1' for productive or '0' for unproductive as your answer. Do not reply with anything else."
+								Transcript: "${transcript}"` //the prompt to the AI
                          }
                     ],
-                    model: "llama3-8b-8192" //model used
+                    model: "llama-3.1-70b-versatile", //model used
+
+					temperature: 0.3,
                })
 
                //   console.log(AIverdict.choices[0]?.message?.content || "")
