@@ -16,7 +16,7 @@ export async function generateAnalysis(req, res) {
                .from("Users")
                .select()
                .eq("email", req.user.email)
-               .eq("username", req.user.name)
+               .eq("auth_token", req.user.sub)
 
           const user = data[0]
 
@@ -200,7 +200,7 @@ async function UpdateUserStats(user, t, gainPointsFlag) {
 
      if (total_points > nextLevel) level = user.level + 1
 
-     const updateUserStats = await supabase
+     await supabase
           .from("Users")
           .update({
                total_points,
