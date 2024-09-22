@@ -37,3 +37,7 @@ export function mainPage(req, res, next) {
      console.log(req.user)
      res.sendFile(path.join(PAGES_PATH, "src/main.html"))
 }
+
+export function pageNotFound(req, res, next){
+     res.sendFile(path.join(PAGES_PATH, "src/404.html"))
+}
