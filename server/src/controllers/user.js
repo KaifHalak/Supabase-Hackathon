@@ -29,9 +29,6 @@ export async function getUserStats(req, res) {
           const userRank =
                leaderboard.findIndex((u) => u.userId === user.userId) + 1
 
-          console.log(
-               `User with ID ${user.userId} is in position ${userRank + 1}`
-          )
 
           const currentPoints = user.total_points
           const nextLevel = user.level + 1
@@ -40,14 +37,6 @@ export async function getUserStats(req, res) {
 
           const pointsToAdvance = Math.floor(pointsToLevelUp - currentPoints)
 
-          console.log("User Stats Sent")
-          console.log({
-               dailyGoal: DAILY_GOAL,
-               leaderboardPosition: userRank,
-               points: currentPoints,
-               currentLevel: user.level,
-               pointsToAdvance
-          })
 
           return res.status(200).json({
                dailyGoal: DAILY_GOAL,

@@ -17,14 +17,12 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
                if (videoId && videoId !== currentVideoId) {
                     currentVideoId = videoId
-                    console.log("New YouTube video detected:", videoId)
-
+     
                     let isContentScriptInjected =
                          await sendMessageToContentScript(tab.id, {
                               type: "CONTENT_SCRIPT_STATUS"
                          })
 
-                    console.log(isContentScriptInjected)
 
                     if (isContentScriptInjected) {
                          if (isContentScriptInjected?.status === "active") {
@@ -98,7 +96,6 @@ async function SendInfoToServer(videoId) {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
      if (request.type === "WATCHED_THRESHOLD") {
           SendInfoToServer(request.videoId)
-          console.log("Threshold Reached: ", request.percentage)
      }
 })
 

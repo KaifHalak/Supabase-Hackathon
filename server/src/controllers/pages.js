@@ -35,7 +35,6 @@ export async function leaderboardData(req, res, next) {
 }
 
 export function mainPage(req, res, next) {
-     console.log(req.user)
      res.sendFile(path.join(PAGES_PATH, "src/main.html"))
 }
 

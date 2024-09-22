@@ -36,6 +36,12 @@ async function PopulateUserValues(userStats) {
      let { prevTotalPoints, todayDailyGoalPoints, dailyGoalCurrentDate } =
           await chrome.storage.sync.get(null)
 
+     if (!prevTotalPoints || !todayDailyGoalPoints || !dailyGoalCurrentDate) {
+          prevTotalPoints = 0
+          todayDailyGoalPoints = 0
+          dailyGoalCurrentDate = 0
+     }
+
      // Reset Daily goal everyday
 
      const storedDate = new Date(dailyGoalCurrentDate)
@@ -47,7 +53,6 @@ async function PopulateUserValues(userStats) {
      if (today > storedDate) {
           todayDailyGoalPoints = 0
           dailyGoalCurrentDate = today
-          console.log("reset daily points")
      }
 
      let newPointsEarned = 0

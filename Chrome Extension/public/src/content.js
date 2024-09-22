@@ -10,7 +10,6 @@ const video = document.querySelector("video")
 main()
 
 function updateWatchedTime() {
-     console.log("CONTENT SCRIPT STARTED")
      const currentTime = video.currentTime
 
      if (lastUpdateTime !== null) {
@@ -22,12 +21,6 @@ function updateWatchedTime() {
 
      const watchedPercentage = (watchedTime / video.duration) * 100
 
-     console.log(
-          `Watched time: ${watchedTime.toFixed(
-               2
-          )}s, Percentage: ${watchedPercentage.toFixed(2)}%`
-     )
-
      if (watchedPercentage >= THRESHOLD_PERCENTAGE && !thresholdReached) {
           thresholdReached = true
           chrome.runtime.sendMessage({
@@ -37,7 +30,6 @@ function updateWatchedTime() {
           })
 
           video.removeEventListener("timeupdate", updateWatchedTime)
-          console.log("CONTENT SCRIPT STOPPED")
      }
 }
 
