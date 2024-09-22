@@ -1,7 +1,7 @@
 # Productivity Tracker Chrome Extension
 
-This Chrome extension helps users track their productivity by analyzing their video-watching behavior and overall productivity using AI and JavaScript. 
-It monitors when users pause or skip through videos to ensure that non-productive time isn’t counted towards their total watch time. 
+This Chrome extension helps users track their productivity by analyzing their video-watching behavior and overall productivity using AI and JavaScript.
+It monitors when users pause or skip through videos to ensure that non-productive time isn’t counted towards their total watch time.
 Additionally, it features a leaderboard that ranks users based on their productivity, awarding points for productive behavior.
 
 ## Contributors
@@ -17,7 +17,7 @@ Additionally, it features a leaderboard that ranks users based on their producti
 - **Video Time Tracking**: Monitors when the user pauses or skips through a video, ensuring that only active watch time is counted.
 - **Productivity Leaderboard**: A leaderboard to rank users based on their productivity. The more productive you are, the more points you gain.
 - **Point System**: Points are awarded based on productivity, allowing users to compete with others on the leaderboard.
-  
+
 ## Installation Guide
 
 1. **Clone the repository**:
@@ -36,7 +36,6 @@ Additionally, it features a leaderboard that ranks users based on their producti
    - Open Chrome and go to `chrome://extensions/`.
    - Enable "Developer mode" by toggling the switch on the top-right corner.
    - Click "Load unpacked" and select the extension directory.
-   
 5. Start tracking your productivity!
 
 ## How It Works
@@ -50,4 +49,7 @@ Additionally, it features a leaderboard that ranks users based on their producti
 ## License
 
 This project is licensed under the MIT License.
+
+```
+
 ```
