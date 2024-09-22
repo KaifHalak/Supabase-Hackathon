@@ -8,7 +8,7 @@ const LOADER = document.querySelector("#loader-container")
 
 let currentPositionCount = 1
 
-function AddTop3Positions(name, points, currentUser) {
+function AddTop3Positions(name, points, level, currentUser) {
      let nameElement = document.querySelector(
           `#pos-${currentPositionCount}-name`
      )
@@ -16,11 +16,16 @@ function AddTop3Positions(name, points, currentUser) {
           `#pos-${currentPositionCount}-score`
      )
 
+     let levelElement = document.querySelector(
+          `#pos-${currentPositionCount}-level`
+     ) 
+
      nameElement.textContent = `${name} ${currentUser ? "(You)" : ""}`
-     scoreElement.textContent = points
+     scoreElement.textContent = `${points} points`
+     levelElement.textContent = `Level ${level}`
 }
 
-function AddNewPost3rdPosition(name, points, currentUser) {
+function AddNewPost3rdPosition(name, points, level, currentUser) {
      let element = document.createElement("tr")
      element.className = `border-b border-gray-700 ${
           currentUser ? "bg-[#444761]" : ""
@@ -30,12 +35,13 @@ function AddNewPost3rdPosition(name, points, currentUser) {
      <td class="px-4 py-2">${currentPositionCount}</td>
      <td class="px-4 py-2">${name} ${currentUser ? "(You)" : ""}</td>
      <td class="px-4 py-2 text-right">${points}</td>
+     <td class="px-4 py-2 text-right">${level}</td>
     `
 
      POST_3rd_POSITIONS_BODY.appendChild(element)
 }
 
-function AddCurrentUserOnTop(name, points, currentUser){
+function AddCurrentUserOnTop(name, points){
      let element = document.createElement("tr")
      element.className = `w-full border-b border-gray-700 bg-[#444761]`
 
@@ -43,6 +49,7 @@ function AddCurrentUserOnTop(name, points, currentUser){
      <td class="px-4 py-2">${currentPositionCount}</td>
      <td class="px-4 py-2">${name} (You)</td>
      <td class="px-4 py-2 text-right">${points}</td>
+     <td class="px-4 py-2 text-right">${level}</td>
     `
 
     CURRENT_USER_BODY.appendChild(element)
@@ -57,24 +64,25 @@ async function FetchDataFromServer() {
 
 async function main() {
      const leaderboardData = await FetchDataFromServer()
+     LOADER.classList.add("hidden")
 
      leaderboardData.forEach(
           ({ username, total_points: totalPoints, level, currentUser }) => {
                if (currentUser && currentPositionCount > 10) {
-                    AddCurrentUserOnTop(username, totalPoints)
+                    AddCurrentUserOnTop(username, totalPoints, level)
                }
 
                if (currentPositionCount <= 3) {
-                    AddTop3Positions(username, totalPoints, currentUser)
+                    AddTop3Positions(username, totalPoints, level, currentUser)
                } else {
-                    AddNewPost3rdPosition(username, totalPoints, currentUser)
+                    AddNewPost3rdPosition(username, totalPoints, level, currentUser)
                }
 
                currentPositionCount++
           }
      )
 
-     LOADER.classList.add("hidden")
+     
 
 }
 

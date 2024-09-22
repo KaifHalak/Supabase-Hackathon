@@ -1,80 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" class="bg-[#1E1E1E]">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0" />
+          <title>Document</title>
+          <link rel="stylesheet" href="src/output.css" />
+     </head>
 
-<head>
-     <meta charset="UTF-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <title>Document</title>
-     <link rel="stylesheet" href="src/output.css" />
-</head>
+     <body
+          class="min-h-screen text-white bg-[radial-gradient(circle_at_70%_30%,_#214492_0%,_#161f43_28%,_#141b3c_50%,_#110f28_100%)] bg-no-repeat px-64 md:px-32">
+          
+          <nav class="flex flex-row items-center justify-between py-3">
+               <img class="w-32" src="../assets/logo.png" alt="logo.png" />
+               <div class="space-x-3">
+                    <a
+                         href="/leaderboard"
+        target="_blank"
+        rel="noopener noreferrer"
+                         class="p-1 text-sm border border-white border-solid rounded-md h-min">
+                         Leaderboard
+                    </a>
+                    <a
+                         href="/#about"
+                         class="p-1 text-sm border border-white border-solid rounded-md h-min">
+                         About
+                    </a>
+               </div>
+          </nav>
 
-<body
-     class="min-h-screen text-white bg-[radial-gradient(circle_at_70%_30%,_#214492_0%,_#161f43_28%,_#141b3c_50%,_#110f28_100%)] bg-no-repeat px-64 md:px-32">
+          <section
+               id="hero"
+               class="flex items-center justify-between py-8 mx-16">
+               <div
+                    class="w-min divide-y-2 divide-[linear-gradient(to_right,_#ffffff_0%,_#f7ca1e_75%)]">
+                    <div>
+                         <h1 class="text-[3rem] leading-none mb-3 w-[30rem]">
+                              Can <strong class="text-[#F7CA1E]">YOU</strong>
+                              be the
+                              <br />
+                              most productive?
+                         </h1>
+                         <p class="text-xl">
+                              Use our Chrome Extension to become the
+                              productivity champion!
+                         </p>
+                    </div>
+                    <div
+                         class="flex flex-row pt-6 my-6 font-semibold text-black gap-x-8">
+                         <a
+                              href="https://github.com/KaifHalak/Supabase-Hackathon"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="rounded-lg w-64 text-center bg-[linear-gradient(to_left,_#ffffff_0%,_#f7ca1e_100%)] h-fit py-3">
+                              Source Code
+                         </a>
 
-     <nav class="flex flex-row items-center justify-between py-3">
-          <img class="w-32" src="../assets/logo.png" alt="logo.png">
-          <div class="space-x-3">
-               <a href="./leaderboard.html" class="p-1 text-sm border border-white border-solid rounded-md h-min">
-                    Leaderboard
-               </a>
-               <a href="/#about" class="p-1 text-sm border border-white border-solid rounded-md h-min">
-                    About
-               </a>
-          </div>
-     </nav>
-
-     <section id="hero" class="flex items-center justify-between py-8 mx-16">
-          <div class="w-min divide-y-2 divide-[linear-gradient(to_right,_#ffffff_0%,_#f7ca1e_75%)]">
+                         <div class="flex flex-col items-center">
+                              <a
+                                   class="rounded-lg w-64 px-16 py-1.5 bg-[linear-gradient(to_left,_#ffffff_0%,_#f7ca1e_100%)] opacity-50 cursor-not-allowed text-center py-3">
+                                   Chrome Store
+                              </a>
+                              <span class="text-white">Coming Soon</span>
+                         </div>
+                    </div>
+               </div>
                <div>
-                    <h1 class="text-[3rem] leading-none mb-3 w-[30rem]">Can <strong class="text-[#F7CA1E]">YOU</strong>
-                         be
-                         the
-                         <br>
-                         most
-                         productive?
-                    </h1>
-                    <p class="text-xl">Use our Chrome Extension to become the productivity champion!</p>
+                    <img
+                         class="w-[30rem]"
+                         src="../assets/trophy.png"
+                         alt="trophy.png" />
                </div>
-               <div class="flex flex-row pt-6 my-6 font-semibold text-black gap-x-8">
-                    <button
-                         class="rounded-lg w-64 px-16 py-1.5 bg-[linear-gradient(to_left,_#ffffff_0%,_#f7ca1e_100%)]">
-                         Source Code
-                    </button>
-                    <button
-                         class="rounded-lg w-64 px-16 py-1.5 bg-[linear-gradient(to_left,_#ffffff_0%,_#f7ca1e_100%)]">
-                         Chrome Store
-                    </button>
+          </section>
+
+          <section
+               id="about"
+               class="flex items-center justify-between py-8 mx-16">
+               <div>
+                    <img
+                         class="w-[30rem]"
+                         src="../assets/about.png"
+                         alt="about.png" />
                </div>
-          </div>
-          <div>
-               <img class="w-[30rem]" src="../assets/trophy.png" alt="trophy.png">
-          </div>
-     </section>
+               <div class="my-6 w-min">
+                    <h1 class="text-3xl text-[#f7ca1e] mb-3">About</h1>
+                    <p class="font-light w-[30rem]">
+                         Unlock your productivity with our
+                         <span class="text-[#f7ca1e]">AI-powered</span> Chrome
+                         extension that tracks and improves your video-watching
+                         habits. Earn points by watching educational and
+                         productive content on YouTube, and compete for the top
+                         spot on the global leaderboard. Turn your screen time
+                         into personal growth!
+                    </p>
 
-     <section id="about" class="flex items-center justify-between py-8 mx-16">
-          <div>
-               <img class="w-[30rem]" src="../assets/about.png" alt="about.png">
-          </div>
-          <div class="my-6 w-min">
-               <h1 class="text-3xl text-[#f7ca1e] mb-3">About</h1>
-               <p class="font-light w-[30rem]">
-                    Unlock your productivity with our <span class="text-[#f7ca1e]">AI-powered</span> Chrome extension
-                    that tracks and improves
-                    your
-                    video-watching habits. Earn points by watching educational and productive content on YouTube, and
-                    compete for the top spot on the global leaderboard. Turn your screen time into personal growth!
-               </p>
-
-               <button class="flex items-center gap-x-3 rounded-lg mt-3 px-6 py-1.5 bg-[#d9d9d9] text-black">
-                    <svg width="39" height="36" viewBox="0 0 39 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                         <path d="M3.25 31.5V13.5H12.1875V31.5H3.25ZM15.0312 31.5V4.5H23.9688V31.5H15.0312ZM26.8125 31.5V16.5H35.75V31.5H26.8125Z"
-                              fill="black" />
-                    </svg>
-                    View Leaderboard
-               </button>
-          </div>
-     </section>
-
-</body>
-
+                    <a
+                         href="/leaderboard"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="flex items-center gap-x-3 rounded-lg mt-3 px-6 py-1.5 bg-[#d9d9d9] text-black">
+                         <svg
+                              width="39"
+                              height="36"
+                              viewBox="0 0 39 36"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                   d="M3.25 31.5V13.5H12.1875V31.5H3.25ZM15.0312 31.5V4.5H23.9688V31.5H15.0312ZM26.8125 31.5V16.5H35.75V31.5H26.8125Z"
+                                   fill="black" />
+                         </svg>
+                         View Leaderboard
+                    </a>
+               </div>
+          </section>
+     </body>
 </html>

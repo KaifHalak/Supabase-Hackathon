@@ -12,14 +12,26 @@
 
      <body
           class="text-white bg-[radial-gradient(closest-side,_#5E83DB_0%,_#110F28_86%)] min-h-[90vh]">
-          <nav class="flex flex-row justify-between mx-6 mt-6">
-               <h2 class="text-xl font-medium">Productify</h2>
-               <h1 class="text-4xl font-medium">Leaderboard</h1>
-               <h2 class="text-xl font-medium">Productify</h2>
+          <nav class="flex flex-row items-center justify-start mx-6 mt-6">
+               <a href="/" class="p-3 px-5 bg-[#2a2d41] rounded-md">
+                    <img
+                         class="w-32"
+                         src="/assets/logo.png"
+                         alt="Productive Grounds logo" />
+               </a>
+               <a href="/">
+                    <span class="ml-5">Home</span>
+               </a>
           </nav>
 
+          <div class="w-full text-center">
+               <h1 class="text-6xl font-medium">Leaderboard</h1>
+          </div>
+
           <!-- Spinner -->
-          <div class="absolute top-0 flex items-center justify-center w-full h-full bg-black/50 z-[99999]" id="loader-container">
+          <div
+               class="absolute top-0 flex items-center justify-center w-full h-full bg-black/50 z-[99999]"
+               id="loader-container">
                <div class="loader"></div>
           </div>
 
@@ -47,6 +59,9 @@
                                         <p
                                              id="pos-2-score"
                                              class="font-bold text-center"></p>
+                                        <p
+                                             id="pos-2-level"
+                                             class="font-bold text-center"></p>
                                    </div>
                               </div>
 
@@ -66,6 +81,9 @@
                                              class="text-sm text-center"></p>
                                         <p
                                              id="pos-1-score"
+                                             class="font-bold text-center"></p>
+                                        <p
+                                             id="pos-1-level"
                                              class="font-bold text-center"></p>
                                    </div>
                               </div>
@@ -87,6 +105,10 @@
                                         <p
                                              id="pos-3-score"
                                              class="font-bold text-center"></p>
+
+                                             <p
+                                             id="pos-3-level"
+                                             class="font-bold text-center"></p>
                                    </div>
                               </div>
                          </div>
@@ -106,6 +128,9 @@
                                         </th>
                                         <th class="px-4 py-2 text-right">
                                              Points
+                                        </th>
+                                        <th class="px-4 py-2 text-right">
+                                             Level
                                         </th>
                                    </tr>
                               </thead>
