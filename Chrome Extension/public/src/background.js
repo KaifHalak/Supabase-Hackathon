@@ -1,4 +1,5 @@
 const serverUrl = "http://localhost:3000/youtube/analysis/"
+const COOKIE_NAME = "productivityAppSession123"
 
 let currentVideoId = null
 
@@ -13,22 +14,25 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           if (match) {
                const videoId = match[1]
 
-               if (videoId /*  && videoId !== currentVideoId*/) {
+               if (videoId && videoId !== currentVideoId) {
                     currentVideoId = videoId
                     console.log("New YouTube video detected:", videoId)
 
-                    chrome.scripting
-                         .executeScript({
-                              target: { tabId: tabId },
-                              files: ["src/content.js"]
-                         })
+                    chrome.scripting.executeScript({
+                         target: { tabId: tabId },
+                         files: ["src/content.js"]
+                    })
                }
           }
      }
 })
 
-function SendInfoToServer(videoId) {
-     console.log(serverUrl + videoId)
+async function SendInfoToServer(videoId) {
+     userSignedIn = await getCookie()
+     if (!userSignedIn){
+          return
+     }
+
      const TrySendingRequest = (attemptsLeft = 3) => {
           fetch(serverUrl + videoId, {
                method: "POST",
@@ -44,7 +48,8 @@ function SendInfoToServer(videoId) {
                     return response.json()
                })
                .then((data) => {
-                    console.log("Server response:", data)
+                    const { pointsEarned } = data
+                    CreateNotification(pointsEarned)
                })
                .catch((error) => {
                     console.error("Failed to send video info to server:", error)
@@ -85,4 +90,33 @@ async function OnInstalled({ reason }) {
           default:
                break
      }
+}
+
+function CreateNotification(pointsEarned) {
+     chrome.notifications.clear("welcome-notification").then(() => {
+          chrome.notifications.create("points-earned", {
+               type: "basic",
+               iconUrl: "../assets/icon.png",
+               title: "Points Earned!",
+               message: `You just scored ${pointsEarned} points! Keep it up!`,
+               silent: true,
+               priority: 2
+          })
+     })
+}
+
+
+function getCookie() {
+     return new Promise((resolve, reject) => {
+          chrome.cookies.get(
+               { url: SERVER_PATH, name: COOKIE_NAME },
+               function (cookie) {
+                    if (chrome.runtime.lastError) {
+                         resolve(null)
+                    } else {
+                         resolve(cookie ? cookie.value : null)
+                    }
+               }
+          )
+     })
 }

@@ -1,4 +1,5 @@
 export default async function authUser(req, res, next) {
+     // return res.json({})
      req.user = {
           sub: "108224617154390927768",
           name: "Muhammad Usman",

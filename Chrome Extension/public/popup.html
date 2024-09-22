@@ -7,7 +7,8 @@
                content="width=device-width, initial-scale=1.0" />
           <title>YouTube Productivity Tracker</title>
           <link href="output.css" rel="stylesheet" />
-          <link href="google.css" rel="stylesheet" />
+          <link href="assets/google.css" rel="stylesheet" />
+          <link href="assets/loader.css" rel="stylesheet" />
           <style>
                body,
                html {
@@ -22,7 +23,7 @@
 
           <div
                id="loginScreen"
-               class="flex w-full items-center justify-center  bg-gray-800 h-[200px]">
+               class="hidden w-full items-center justify-center  bg-gray-800 h-[200px]">
                <div
                     class="w-[290px] flex flex-col items-center justify-center space-y-3 shadow-2xl">
                     <h1 class="text-3xl font-bold text-white">App Name</h1>
@@ -68,9 +69,14 @@
           </div>
 
           <!-- Main Stats Screen (UI 2) -->
+
+          <div class="absolute flex items-center justify-center w-full h-full bg-black/50 z-[99999]" id="loader-container">
+               <div class="loader"></div>
+          </div>
+
           <div
                id="statsScreen"
-               class="hidden w-full h-full p-6 text-white bg-gray-800">
+               class="flex w-full h-full p-6 text-white bg-gray-800">
                <div class="flex flex-col h-full w-[280px]">
                     <div class="flex-grow space-y-3">
                          
@@ -80,7 +86,7 @@
                               <div class="text-center">
                                    <p
                                         id="totalPointsValue"
-                                        class="text-5xl font-bold mb-2">
+                                        class="mb-2 text-5xl font-bold">
                                         null
                                    </p>
                                    <p class="text-sm font-medium">Total Points</p>
@@ -97,6 +103,10 @@
                          
                          </div>
                               
+                         </div>
+
+                         <div class="font-semibold text-center">
+                              <span>Watch 30% of a productive video to earn points</span>
                          </div>
 
                          <div

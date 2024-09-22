@@ -3,7 +3,6 @@ const LEADERBOARD_PAGE = SERVER_PATH + "/leaderboard"
 const GOOGLE_AUTH = SERVER_PATH + "/auth/google"
 const SIGN_OUT = SERVER_PATH + "/auth/sign-out"
 const USER_STATS = SERVER_PATH + "/user/stats"
-// const USER_STATS = SERVER_PATH + "/statsTest"
 
 const COOKIE_NAME = "productivityAppSession123"
 
@@ -15,7 +14,7 @@ function getCookie() {
                { url: SERVER_PATH, name: COOKIE_NAME },
                function (cookie) {
                     if (chrome.runtime.lastError) {
-                         reject(chrome.runtime.lastError)
+                         resolve(null)
                     } else {
                          resolve(cookie ? cookie.value : null)
                     }
@@ -24,14 +23,7 @@ function getCookie() {
      })
 }
 
-async function PopulateUserValues() {
-     let response = await fetch(USER_STATS)
-     const userStats = await response.json()
-
-     if (Object.keys(userStats).length === 0) {
-          return false
-     }
-
+async function PopulateUserValues(userStats) {
      // Populate the values
      const {
           dailyGoal,
@@ -76,7 +68,12 @@ async function PopulateUserValues() {
           "#dailyGoalValue"
      ).textContent = `Daily Goal: ${dailyGoal} Points`
 
-     document.querySelector("#totalPointsValue").textContent = points
+     let totalPointsElement = document.querySelector("#totalPointsValue")
+     totalPointsElement.textContent = points
+
+     if (points.toString().length > 4) {
+          totalPointsElement.classList.add("text-4xl")
+     }
 
      document.querySelector("#newPointsEarnedValue").textContent =
           "+" + newPointsEarned
@@ -105,11 +102,9 @@ async function PopulateUserValues() {
           levelProgress + "%"
      document.querySelector("#currentLevelProgressValue").textContent =
           levelProgress + "%"
-
-     return true
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+async function main() {
      userSignedIn = await getCookie()
 
      const loginScreen = document.getElementById("loginScreen")
@@ -118,11 +113,22 @@ document.addEventListener("DOMContentLoaded", async () => {
      const signOutButton = document.getElementById("signOutButton")
      const leaderBoardButton = document.getElementById("leaderBoardButton")
 
+     const loaderContainer = document.querySelector("#loader-container")
+
      if (!userSignedIn) {
           loginScreen.style.display = "flex"
           statsScreen.style.display = "none"
      } else {
-          let flag = await PopulateUserValues()
+          let flag = false
+
+          let response = await fetch(USER_STATS)
+          const userStats = await response.json()
+
+          if (Object.keys(userStats).length > 0) {
+               flag = true
+          }
+
+          // Check if the cookie is valid
           if (!flag) {
                userSignedIn = null
                loginScreen.style.display = "flex"
@@ -130,6 +136,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           } else {
                loginScreen.style.display = "none"
                statsScreen.style.display = "block"
+               PopulateUserValues(userStats)
+
+               loaderContainer.classList.add("hidden")
           }
      }
 
@@ -151,4 +160,6 @@ document.addEventListener("DOMContentLoaded", async () => {
      leaderBoardButton.addEventListener("click", () => {
           chrome.tabs.create({ url: LEADERBOARD_PAGE })
      })
-})
+}
+
+main()

@@ -4,6 +4,8 @@ import { supabase } from "../services/supabase.js"
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
+const POINTS_PER_VID = 70
+
 export async function generateAnalysis(req, res) {
      try {
           const id = req.params.videoId
@@ -42,12 +44,15 @@ export async function generateAnalysis(req, res) {
           if (videoAnalysisExistsInDB.data.length > 0) {
                console.log("Video exists in DB. no need for re-analysis")
 
+               let pointsEarned = 0
+
                const analysis = videoAnalysisExistsInDB.data[0].analysis
                const uri = videoAnalysisExistsInDB.data[0].uri
 
                let gainPointsFlag = false
                if (analysis === "productive") {
                     gainPointsFlag = true
+                    pointsEarned = POINTS_PER_VID
                }
 
                await UpdateUserStats(user, t, gainPointsFlag)
@@ -63,16 +68,14 @@ export async function generateAnalysis(req, res) {
                console.log("New vid watched by user")
                console.log(insertNewVideoWatchedByUser)
 
-               return res.status(
-                    200
-               ) /* .json({ analysis: videoExists.data[0].analysis });*/
+               return res.json({ pointsEarned })
           }
 
           // Perform video analysis as it does not exist in DB
 
           // Ignore the vid if no captions
           if (t.length <= 0) {
-               return res.status(404).json({ msg: "Captions not found." })
+               return res.status(404)
           }
 
           // Make use of only first 10 min of transcript
@@ -96,8 +99,6 @@ export async function generateAnalysis(req, res) {
           } else {
                transcript = t.map((t) => t.text).join(" ")
           }
-
-          // return res.status(200).json({ t: t.slice(0, 270).slice(-1), transcript });
 
           let verdict
           let numOfAttempts = 3
@@ -165,15 +166,20 @@ export async function generateAnalysis(req, res) {
           if (
                insertNewVideoAnalysis.data?.length > 0 &&
                !insertNewVideoAnalysis.error
-          )
+          ) {
+               let pointsEarned = 0
+
+               if (verdict == 1) {
+                    pointsEarned = POINTS_PER_VID
+               }
+
                return res.status(200).json({
-                    // transcript: transcript,
-                    analysis: verdict
+                    pointsEarned
                })
-          else return res.status(500)
+          } else return res.status(500)
      } catch (err) {
           console.error(err)
-          return res.status(500).json({ msg: "Unexpected error occured." })
+          return res.status(500)
      }
 }
 
@@ -182,7 +188,7 @@ async function UpdateUserStats(user, t, gainPointsFlag) {
      let total_points
 
      if (gainPointsFlag) {
-          total_points = user.total_points += 70
+          total_points = user.total_points += POINTS_PER_VID
      } else {
           total_points = user.total_points += 0
      }
