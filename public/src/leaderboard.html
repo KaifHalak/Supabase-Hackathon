@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Leaderboard</title>
+     <link href="./output.css" rel="stylesheet" />
+</head>
+
+<body class="text-white bg-[radial-gradient(closest-side,_#848484_0%,_#1e1e1e_86%)] min-h-[90vh]">
+     <nav class="flex flex-row justify-between mt-6 mx-6">
+          <h2 class="font-medium text-xl">Productify</h2>
+          <h1 class="font-medium text-4xl">Leaderboard</h1>
+          <h2 class="font-medium text-xl">Productify</h2>
+     </nav>
+     <div class="container p-4 mx-auto">
+          <!-- Ranks Container -->
+          <div class="relative p-6 mt-24 bg-[#333333] mx-24 rounded-xl outline outline-[6px] outline-[#fff]/30">
+               <div
+                    class="relative w-2/3 p-8 mx-auto mb-4 -mt-16 bg-[#1e1e1e] rounded-3xl outline outline-[5px] outline-[#5b5b5b] outline-offset-[-8px]">
+                    <div class="flex items-end justify-center h-40">
+                         <!-- Second Place -->
+                         <div class="flex flex-col items-center mx-2">
+                              <div class="flex items-center justify-center w-12 h-12 mb-2">
+                                   <img src="../assets/Trophies_icons/2nd.png" alt="Trophy"
+                                        class="object-contain w-full h-full" />
+                              </div>
+                              <div class="flex flex-col items-center justify-center w-min h-24 p-2 bg-gray-600">
+                                   <p id="pos-2-name" class="text-sm text-center"></p>
+                                   <p id="pos-2-score" class="font-bold text-center"></p>
+                              </div>
+                         </div>
+
+                         <!-- First Place -->
+                         <div class="flex flex-col items-center mx-2">
+                              <div class="flex items-center justify-center w-12 h-12 mb-2">
+                                   <img src="../assets/Trophies_icons/1st.png" alt="Trophy"
+                                        class="object-contain w-full h-full" />
+                              </div>
+                              <div class="flex flex-col items-center justify-center w-min p-2 bg-yellow-500 h-28">
+                                   <p id="pos-1-name" class="text-sm text-center"></p>
+                                   <p id="pos-1-score" class="font-bold text-center"></p>
+                              </div>
+                         </div>
+
+                         <!-- Third Place -->
+                         <div class="flex flex-col items-center mx-2">
+                              <div class="flex items-center justify-center w-12 h-12 mb-2">
+                                   <img src="../assets/Trophies_icons/2nd.png" alt="Trophy"
+                                        class="object-contain w-full h-full" />
+                              </div>
+                              <div class="flex flex-col items-center justify-center w-min h-20 p-2 bg-orange-500">
+                                   <p id="pos-3-name" class="text-sm text-center"></p>
+                                   <p id="pos-3-score" class="font-bold text-center"></p>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="overflow-hidden bg-[#1e1e1e]/60 rounded-xl">
+                    <table class="w-full">
+                         <thead>
+                              <tr class="bg-[#1e1e1e]">
+                                   <th class="px-4 py-2 text-left">
+                                        Place
+                                   </th>
+                                   <th class="px-4 py-2 text-left">
+                                        Name
+                                   </th>
+                                   <th class="px-4 py-2 text-right">
+                                        Points
+                                   </th>
+                              </tr>
+                         </thead>
+                         <tbody id="post-3-positions-body">
+                         </tbody>
+                    </table>
+               </div>
+          </div>
+     </div>
+</body>
+<script src="script/leaderboard.js"></script>
+
+</html>
