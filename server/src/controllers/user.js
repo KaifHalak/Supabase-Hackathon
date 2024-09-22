@@ -1,4 +1,6 @@
 import { supabase } from "../services/supabase.js"
+const DAILY_GOAL = 800
+
 export async function getUserStats(req, res) {
      try {
           const { data: userArr, error: uError } = await supabase
@@ -40,7 +42,7 @@ export async function getUserStats(req, res) {
 
           console.log("User Stats Sent")
           console.log({
-               dailyGoal: 100,
+               dailyGoal: DAILY_GOAL,
                leaderboardPosition: userRank,
                points: currentPoints,
                currentLevel: user.level,
@@ -48,7 +50,7 @@ export async function getUserStats(req, res) {
           })
 
           return res.status(200).json({
-               dailyGoal: 100,
+               dailyGoal: DAILY_GOAL,
                leaderboardPosition: userRank,
                points: currentPoints,
                currentLevel: user.level,
