@@ -20,7 +20,8 @@ const server = http.createServer(app)
 app.use(
      expressSession({
           cookie: {
-               maxAge: 24 * 60 * 60 * 1000,
+               // 20 days validity
+               maxAge: 20 * 24 * 60 * 60 * 1000,
                sameSite: false,
                name: "productivityAppSession123",
                httpOnly: false

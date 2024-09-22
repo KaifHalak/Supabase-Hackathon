@@ -16,6 +16,7 @@ export async function leaderboardData(req, res, next) {
           .select("userId, username, total_points, level")
           .order("total_points", { ascending: false })
 
+
      let modifiedPayload
 
      if (!(req.user && req.isAuthenticated())) {
