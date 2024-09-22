@@ -61,13 +61,12 @@ export async function insertUserToDB({ sub, name, picture, email }) {
 	if (exists.data.length > 0) {
 		const auth = exists.data[0].auth_token === sub;
 
-		if (auth) return true;
+		if (auth) return exists.data[0].userId;
 		else return false;
 	}
 
 	const insertUser = await supabase.from("Users").insert({ username: name, email, picture, auth_token: sub }).select();
+	if (insertUser.data[0]?.length <= 0) return false;
 
-	if (insertUser.data?.length <= 0) return false;
-
-	return true;
+	return insertUser.data[0].userId;
 }

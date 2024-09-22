@@ -13,10 +13,24 @@ export function leaderboardPage(req, res, next) {
 export async function leaderboardData(req, res, next) {
      const { data: userArr, error: uError } = await supabase
           .from("Users")
-          .select("username, total_points, level")
+          .select("userId, username, total_points, level")
           .order("total_points", { ascending: false })
 
-     return res.json(userArr)
+     let modifiedPayload
+
+     if (!(req.user && req.isAuthenticated())) {
+          modifiedPayload = userArr.map(({ userId, ...rest }) => ({
+               ...rest,
+               currentUser: userId == null
+          }))
+     } else {
+          modifiedPayload = userArr.map(({ userId, ...rest }) => ({
+               ...rest,
+               currentUser: userId == req.user.userId
+          }))
+     }
+
+     return res.json(modifiedPayload)
 }
 
 export function mainPage(req, res, next) {

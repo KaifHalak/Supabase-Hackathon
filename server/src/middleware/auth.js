@@ -1,6 +1,7 @@
 export default async function authUser(req, res, next) {
      // return res.json({})
      req.user = {
+          userId: 8,
           sub: "108224617154390927768",
           name: "Muhammad Usman",
           picture: "https://lh3.googleusercontent.com/a/ACg8ocKjoW4g_U0B0F7XSVuB-PER5GCDxsMLMmcN8JaGPeM97NOM3fh3=s96-c",
