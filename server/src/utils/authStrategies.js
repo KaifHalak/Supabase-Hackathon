@@ -22,7 +22,7 @@ export const googleStrategy = new GoogleStrategy(
           const userId = await insertUserToDB(userData)
 
           if (userId) {
-               userData[userId] = userId
+               userData["userId"] = userId
                return done(null, userData)
           }
 

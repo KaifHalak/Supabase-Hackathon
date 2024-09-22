@@ -10,6 +10,7 @@ const video = document.querySelector("video")
 main()
 
 function updateWatchedTime() {
+     console.log("CONTENT SCRIPT STARTED")
      const currentTime = video.currentTime
 
      if (lastUpdateTime !== null) {
@@ -34,6 +35,9 @@ function updateWatchedTime() {
                videoId: currentVideoId,
                percentage: Math.round(watchedPercentage)
           })
+
+          video.removeEventListener("timeupdate", updateWatchedTime)
+          console.log("CONTENT SCRIPT STOPPED")
      }
 }
 
@@ -56,3 +60,12 @@ function main() {
      thresholdReached = false
      handleVideoEvents()
 }
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+     let messageType = message.type
+
+     if (messageType === "CONTENT_SCRIPT_STATUS") {
+          sendResponse({ status: "active" })
+          main()
+     }
+})

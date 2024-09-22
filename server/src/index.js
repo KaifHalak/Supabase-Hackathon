@@ -17,4 +17,4 @@ app.use("/auth", authRouter);
 app.use("/youtube", authUser, youtubeRouter);
 app.use("/user", authUser, statsRouter);
 
-// app.get("*", pageNotFound)
+app.get("*", pageNotFound)

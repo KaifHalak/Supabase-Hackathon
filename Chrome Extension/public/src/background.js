@@ -1,3 +1,4 @@
+const SERVER_PATH = "http://localhost:3000"
 const serverUrl = "http://localhost:3000/youtube/analysis/"
 const COOKIE_NAME = "productivityAppSession123"
 
@@ -7,7 +8,7 @@ const youtubeRegex = /^https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([^&]+)/
 
 chrome.runtime.onInstalled.addListener(OnInstalled)
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
      if (tab.url && changeInfo.status === "complete") {
           const match = tab.url.match(youtubeRegex)
 
@@ -18,6 +19,19 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     currentVideoId = videoId
                     console.log("New YouTube video detected:", videoId)
 
+                    let isContentScriptInjected =
+                         await sendMessageToContentScript(tab.id, {
+                              type: "CONTENT_SCRIPT_STATUS"
+                         })
+
+                    console.log(isContentScriptInjected)
+
+                    if (isContentScriptInjected) {
+                         if (isContentScriptInjected?.status === "active") {
+                              return
+                         }
+                    }
+
                     chrome.scripting.executeScript({
                          target: { tabId: tabId },
                          files: ["src/content.js"]
@@ -27,9 +41,21 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
      }
 })
 
+function sendMessageToContentScript(tabId, message) {
+     return new Promise((resolve, reject) => {
+          chrome.tabs.sendMessage(tabId, message, (response) => {
+               if (chrome.runtime.lastError) {
+                    resolve(null)
+               } else {
+                    resolve(response)
+               }
+          })
+     })
+}
+
 async function SendInfoToServer(videoId) {
      userSignedIn = await getCookie()
-     if (!userSignedIn){
+     if (!userSignedIn) {
           return
      }
 
@@ -93,7 +119,7 @@ async function OnInstalled({ reason }) {
 }
 
 function CreateNotification(pointsEarned) {
-     chrome.notifications.clear("welcome-notification").then(() => {
+     chrome.notifications.clear("points-earned").then((wasCleared) => {
           chrome.notifications.create("points-earned", {
                type: "basic",
                iconUrl: "../assets/icon.png",
@@ -104,7 +130,6 @@ function CreateNotification(pointsEarned) {
           })
      })
 }
-
 
 function getCookie() {
      return new Promise((resolve, reject) => {
