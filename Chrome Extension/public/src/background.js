@@ -1,5 +1,5 @@
-const SERVER_PATH = "https://efficient-patience-production.up.railway.app/"
-const serverUrl = "https://efficient-patience-production.up.railway.app/youtube/analysis/"
+const SERVER_PATH = "http://localhost:3000/"
+const serverUrl = "http://localhost:3000/"
 const COOKIE_NAME = "productivityAppSession123"
 
 let currentVideoId = null
