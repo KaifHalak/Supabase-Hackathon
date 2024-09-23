@@ -9,10 +9,7 @@ import statsRouter from "./routes/stats.js";
 
 import { leaderboardPage, mainPage, leaderboardData, pageNotFound } from "./controllers/pages.js";
 
-// app.get("/", mainPage);
-app.get("/", (req,res, next) => {
-    res.send("HEllo")
-})
+app.get("/", mainPage);
 app.get("/leaderboard", leaderboardPage);
 app.get("/leaderboard/data", leaderboardData);
 
