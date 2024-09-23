@@ -35,7 +35,7 @@
    ```bash
    cd Supabase-Hackathon/server
    npm i
-   npm run dev 
+   npm run start 
    ```
 
 ### Step 2: Load the Extension into Chrome
