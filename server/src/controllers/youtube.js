@@ -135,7 +135,7 @@ export async function generateAnalysis(req, res) {
 
                console.timeEnd("AIverdictExecutionTime") // End measuring time
 
-               //   console.log(AIverdict.choices[0]?.message?.content || "")
+            //    console.log(AIverdict.choices[0]?.message?.content || "")
 
                verdict = AIverdict.choices[0]?.message?.content || undefined //'verdict' contains either 1 for productive or 0 for un-productive when analysis is successful
 
