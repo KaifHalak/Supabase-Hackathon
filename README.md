@@ -1,53 +1,94 @@
-# Productivity Tracker Chrome Extension
+# Productivity Grounds - YouTube Productivity Extension
 
-This Chrome extension helps users track their productivity by analyzing their video-watching behavior and overall productivity using AI and JavaScript. 
-It monitors when users pause or skip through videos to ensure that non-productive time isn’t counted towards their total watch time. 
-Additionally, it features a leaderboard that ranks users based on their productivity, awarding points for productive behavior.
+## Overview
+
+**Productivity Grounds** is a Chrome extension that gamifies YouTube usage by distinguishing between productive (educational) and unproductive (entertainment) videos. Using the **Llama 3.1 AI model** via the **Groq API**, this extension helps users stay on track by notifying them when they are watching productive content. It also introduces **global leaderboards**, levels, and daily goals to motivate users to consume more educational content.
+
+### Key Features:
+
+- **AI-Powered Video Analysis**: Automatically determines whether a YouTube video is productive using AI.
+- **Gamified Productivity**: Earn points for watching educational content, track your progress, and compete on a global leaderboard.
+- **Notifications**: Get notified when you're watching productive content to stay on track.
+- **Leaderboard & Levels**: Monitor your points, levels, and ranking globally while hitting preset daily goals.
 
 ## Contributors
 
-- Usman
-- Awab
-- Radowan
-- Hasan
+- **Usman**
+- **Awab**
+- **Radowan**
+- **Hasan**
 
-## Features
-
-- **AI Analysis**: Detects whether the user is being productive by analysing the content they are watching.
-- **Video Time Tracking**: Monitors when the user pauses or skips through a video, ensuring that only active watch time is counted.
-- **Productivity Leaderboard**: A leaderboard to rank users based on their productivity. The more productive you are, the more points you gain.
-- **Point System**: Points are awarded based on productivity, allowing users to compete with others on the leaderboard.
-  
 ## Installation Guide
 
-1. **Clone the repository**:
-   ```
-      git clone https://github.com/KaifHalak/Supabase-Hackathon
-   ```
-2. #Navigate to the project directory:
+### Step 1: Download the Source Code
+
+1. Clone the repository from GitHub:
    ```bash
-   cd productivity-tracker-extension
+   git clone https://github.com/KaifHalak/Supabase-Hackathon.git
    ```
-3. #Install necessary dependencies:
+2. Navigate to the project directory:
    ```bash
-   npm install
+   cd Supabase-Hackathon
    ```
-4. #Load the extension in Chrome:
-   - Open Chrome and go to `chrome://extensions/`.
-   - Enable "Developer mode" by toggling the switch on the top-right corner.
-   - Click "Load unpacked" and select the extension directory.
-   
-5. Start tracking your productivity!
 
-## How It Works
+### Step 2: Load the Extension into Chrome
 
-- **AI-Powered Productivity Analysis**: The extension uses AI to assess whether the user's current actions (watching, pausing, skipping) are productive. This helps ensure that only productive time contributes to the user’s score.
+1. Navigate to `chrome://extensions/` in your Chrome browser.
+2. Enable **Developer Mode** (toggle in the top right corner).
+3. Click on **Load unpacked** and select the `public` folder located inside the `Chrome Extension` folder:
+   ```
+   Supabase-Hackathon/Chrome Extension/public
+   ```
+4. The extension will now be loaded into Chrome.
 
-- **Accurate Watch Time Tracking**: By tracking video interactions, the extension accurately records active watch time, ignoring moments when the user pauses or skips parts of the video.
+### Step 3: Start Using the Extension
 
-- **Compete on the Leaderboard**: Users can compare their productivity scores with others on a leaderboard, which ranks participants based on their productivity points.
+1. Click on the **Productivity Grounds** extension icon in the Chrome toolbar.
+2. **Sign in with Google** to begin.
+3. You're now set! The extension will start analyzing YouTube videos as you browse.
 
-## License
+## Usage Instructions
 
-This project is licensed under the MIT License.
-```
+### Automatic Video Analysis
+
+- Open any YouTube video in a new tab. The extension will automatically analyze the video transcript and, if it determines the video is productive, you'll receive a notification informing you of your productive behavior.
+
+### Checking Your Progress
+
+- Click on the **Productivity Grounds** icon to view:
+  - **Total Points**: This shows the total points you have accumulated so far.
+  - **Most Recent Points**: This shows the total points you've gained since the last time you viewed the popup.
+  - **Leaderboard Position**: Your current ranking on the global leaderboard.
+  - **Daily Goal**: The daily goal you need to hit to level up.
+  - **Current Level**: Your current level based on the points you have accumulated.
+
+### Leaderboard
+
+- Click the **Leaderboard** button in the popup to view the global rankings of all users. This adds a competitive edge to your productivity journey.
+
+### Note
+
+- The server is already hosted, so there's no need to set up a local server.
+
+## Maximizing Productivity:
+
+- **Hit Daily Goals**: The system gives you daily goals. Stay focused and hit these goals to level up.
+- **Track Your Progress**: Regularly check the popup to see how many points you've earned since your last check.
+- **Compete Globally**: View the leaderboard to see where you stand globally and push yourself to rise in the rankings.
+- **Educational Focus**: To maximize points, focus on watching educational content such as tutorials, courses, and other self-improvement videos.
+
+## Technologies Used
+
+- **HTML, Tailwind CSS, JavaScript**: Frontend development.
+- **Node.js**: Backend server (already hosted).
+- **Llama 3.1 AI Model (via Groq API)**: AI for analyzing YouTube video content.
+- **Supabase**: For storing user data and leaderboard functionality.
+- **Passport.js (Google OAuth)**: For authentication via Google.
+
+## Conclusion
+
+**Productivity Grounds** makes it easier and more enjoyable to stay productive while watching YouTube. By integrating AI-based video analysis and a global leaderboard, the extension not only helps you make more informed decisions but also makes the process of learning fun and competitive. Install the extension, start earning points, and watch yourself climb the leaderboard while improving your productivity!
+
+---
+
+**Happy Learning and Competing!**
