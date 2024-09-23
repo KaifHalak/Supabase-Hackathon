@@ -46,4 +46,4 @@ RUN echo $GROQ_API_KEY
 
 
 # Command to start the server
-CMD ["node", "server/index.js"] 
+CMD ["node", "server/src/index.js"] 
