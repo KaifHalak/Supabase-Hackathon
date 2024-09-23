@@ -1,0 +1,12 @@
+{
+  "name": "supabase-hackathon",
+  "version": "1.0.0",
+  "description": "**Productivity Grounds** is a Chrome extension that gamifies YouTube usage by distinguishing between productive (educational) and unproductive (entertainment) videos. Using the **Llama 3.1 AI model** via the **Groq API**, this extension helps users stay on track by notifying them when they are watching productive content. It also introduces **global leaderboards**, levels, and daily goals to motivate users to consume more educational content.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
