@@ -26,6 +26,7 @@
      "host_permissions": [
           "*://youtube.com/watch*",
           "*://www.youtube.com/watch*",
-          "http://localhost/*"
+          "http://localhost/*",
+          "https://efficient-patience-production.up.railway.app/*"
      ]
 }
