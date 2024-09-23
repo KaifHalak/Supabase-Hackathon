@@ -20,7 +20,7 @@
 
 ## Installation Guide
 
-### Step 1: Download the Source Code
+### Step 1: Download the Source Code And Install Server Packages
 
 1. Clone the repository from GitHub:
    ```bash
@@ -29,6 +29,13 @@
 2. Navigate to the project directory:
    ```bash
    cd Supabase-Hackathon
+   ```
+
+3. Navigate to the server directory and run:
+   ```bash
+   cd Supabase-Hackathon/server
+   npm i
+   npm run dev 
    ```
 
 ### Step 2: Load the Extension into Chrome
@@ -65,10 +72,6 @@
 ### Leaderboard
 
 - Click the **Leaderboard** button in the popup to view the global rankings of all users. This adds a competitive edge to your productivity journey.
-
-### Note
-
-- The server is already hosted, so there's no need to set up a local server.
 
 ## Maximizing Productivity:
 
