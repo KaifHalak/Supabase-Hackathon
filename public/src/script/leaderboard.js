@@ -1,4 +1,4 @@
-const SERVER_URL = "https://efficient-patience-production.up.railway.app"
+const SERVER_URL = "http://localhost:3000"
 const LEADERBOARD_DATA = SERVER_URL + "/leaderboard/data"
 
 // const TOP_3_POSITIONS_BODY = document.querySelector()

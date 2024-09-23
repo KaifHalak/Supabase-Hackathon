@@ -1,4 +1,4 @@
-const SERVER_PATH = "https://efficient-patience-production.up.railway.app"
+const SERVER_PATH = "http://localhost:3000"
 const LEADERBOARD_PAGE = SERVER_PATH + "/leaderboard"
 const GOOGLE_AUTH = SERVER_PATH + "/auth/google"
 const SIGN_OUT = SERVER_PATH + "/auth/sign-out"
