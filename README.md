@@ -1,5 +1,8 @@
 # Productivity Grounds - YouTube Productivity Extension
 
+## Demo:
+https://drive.google.com/file/d/14cbygDbY3EuMDLcYWHVv90cGQRivnhBK/view?usp=sharing
+
 ## Overview
 
 **Productivity Grounds** is a Chrome extension that gamifies YouTube usage by distinguishing between productive (educational) and unproductive (entertainment) videos. Using the **Llama 3.1 AI model** via the **Groq API**, this extension helps users stay on track by notifying them when they are watching productive content. It also introduces **global leaderboards**, levels, and daily goals to motivate users to consume more educational content.
